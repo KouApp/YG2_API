@@ -1,4 +1,5 @@
 from flask import Flask,jsonify,request
+import db_insert
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
