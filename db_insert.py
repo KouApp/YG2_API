@@ -61,38 +61,73 @@ class Database_insert:
         return "Succesfull"
 
     def faculty_insert(self,faculty_id,name):
-        if len(faculty_id) < 2:
+        table_c = tableControl.TableControl()
+        if not table_c.faculty_id_control(faculty_id):
             if len(name) < 50:
-                imlec = self.db.cursor()
-                imlec.execute("insert into m_Faculty(facultyID, name) values (?, ?)", str(faculty_id), str(name))
-                imlec.commit()
-                return "başarılı"
+                curs = self.db.cursor()
+                curs.execute("insert into m_Faculty(facultyID, name) values (?, ?)", str(faculty_id), str(name))
+                curs.commit()
+                return "Succesfull"
             else:
-                return "faculte name fazla karakter"
+                return "Error code : 13"
         else:
-            return "faculte id fazla karakter"
+            return "Error code : 12"
 
     def department_insert(self,depart_id,faculty_id,name):
-        if len(depart_id) < 4:
-            if len(faculty_id) < 2:
+        table_c = tableControl.TableControl()
+        if not table_c.department_id_control(depart_id):
+            if not table_c.faculty_id_control(faculty_id):
                 if len(name) < 55:
-                    imlec = self.db.cursor()
-                    imlec.execute("insert into m_Department(departmentID, facultyID, name) values (?, ?, ?)", str(depart_id), str(faculty_id),str(name))
-                    imlec.commit()
+                    curs = self.db.cursor()
+                    curs.execute("insert into m_Department(departmentID, facultyID, name) values (?, ?, ?)", str(depart_id), str(faculty_id),str(name))
+                    curs.commit()
                     return "başarılı"
                 else:
-                    return "depart name uzun"
+                    return "Error code : 15"
             else:
-                return "department_insert - faculte id fazla karakter"
+                return "Error code : 12"
         else:
-            return "depart id fazla karakter"
+            return "Error code : 14"
 
-
+    def advisor_insert(self,reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password):
+        table_c = tableControl.TableControl()
+        if not table_c.advisor_reg_control(reg_id):
+            return "Error code : 16"
+        if not len(name) < 105:
+            return "Error code : 3"
+        if not len(surname) < 50:
+            return "Error code : 4"
+        if not len(mail) < 255:
+            return "Error code : 5"
+        if not len(title) < 30:
+            return "Error code : 17"
+        if not table_c.department_id_control(depart_id):
+            return "Error code : 7"
+        if not table_c.faculty_id_control(faculty_id):
+            return "Error code : 8"
+        if not type(photo_path) == str:
+            return "Error code : 10"
+        if not len(password) < 255:
+            return "Error code : 11"
+        curs = self.db.cursor()
+        curs.execute("insert into m_Advisor(registrationID,name,surname,title,mail,departmentID,facultyID,photoPath,password) values (?,?,?,?,?,?,?,?,?)",
+            str(reg_id),
+            str(name),
+            str(surname),
+            str(title),
+            str(mail),
+            str(depart_id),
+            str(faculty_id),
+            str(photo_path),
+            str(password))
+        curs.commit()
+        return "Succesfull"
 
 dbase = Database_insert()
+#print(dbase.advisor_insert(3,"mert","taş","baslık","mail","10","1","5","paswrd"))
 #a = dbase.student_insert("116",1,"aaaa","bbbb","awda","5123","10","1","12","addaw","aad")
 #print(a)
-# b = dbase.faculty_insert("1","bilisim")
+#b = dbase.faculty_insert("2","bilisim")
 #print(b)
 
 

@@ -47,6 +47,18 @@ class TableControl:
         else:
             return False
 
+    def advisor_reg_control(self,reg_id):
+
+        if type(reg_id) == int:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[0] == reg_id:
+                    return False
+            return True
+        else:
+            return False
 tableControl = TableControl()
 # tableControl.faculty_id_control("2")
 #print(tableControl.student_id_control("111"))

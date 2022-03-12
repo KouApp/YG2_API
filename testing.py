@@ -38,8 +38,17 @@ class Tester:
         dataTable = curs.fetchall()
         for data in dataTable:
             print(data)
-
+    def advisor_list(self):
+        print("----------------Advisor DATA LİST-----------------------")
+        print("----------------(registrationID,name,surname,title,mail,departmentID,facultyID,photoPath,password)----------------")
+        print("--------------------------------------------------------")
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            print(data)
 testing = Tester()
 testing.faculty_list()
 testing.department_list()
 testing.student_list()
+testing.advisor_list()
