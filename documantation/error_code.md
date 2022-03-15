@@ -18,5 +18,6 @@ Hata kodları ve açıklamaları verilmiştir.
 15. Departman ismi 55 karakterden büyüktür.
 16. Advisor id si int veri tipinde değil veya zaten kayıtlı.
 17. Advisor title 30 karakterden uzun.
-
+18. Message id 10 karakterden uzun veya string türünde değil.
+19. Advisor id yok veya yanlış girilmiş.
 key : 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
