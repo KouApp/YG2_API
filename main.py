@@ -13,7 +13,12 @@ def test():
 	id = request.form['id']
 	quer = db_query.Query()
 	response = quer.faculty_id_query(id)
-	return jsonify({'names': response})
+	return response
+@app.route('/test2',methods=['POST'])
+def test2():
+	print('[INFO]--[test]--[FUNCTION]')
+	name = request.form['name']
+	return jsonify({'names':name})
 
 if __name__ == '__main__':
 	app.run()

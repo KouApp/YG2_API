@@ -11,18 +11,19 @@ class Query:
                             )
 
     def faculty_id_query(self,faculty_id):
-        #dicte = {"sorgu":""}
+
         if len(faculty_id) < 3:
             curs = self.db.cursor()
             curs.execute('SELECT * FROM [abdullah_pys].[m_Faculty]')
             dataTable = curs.fetchall()
             for data in dataTable:
                 if data[0] == faculty_id:
-                    #dicte["sorgu"] = data
-                    return data
+                    dicte = {"1":data[0],
+                             "2":data[1]}
+                    return dicte
         else:
             return "False"
 
-nse = Query()
-print(nse.faculty_id_query("10"))
-print(type(nse.faculty_id_query("10")))
+# nse = Query()
+# print(nse.faculty_id_query("10"))
+# print(type(nse.faculty_id_query("10")))
