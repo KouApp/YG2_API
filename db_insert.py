@@ -123,12 +123,9 @@ class Database_insert:
         curs.commit()
         return "Succesfull"
 
-    #id otomatik artıcak message
-    def messsage_insert(self,id,advisor_id,student_id,status,message):
+    def messsage_insert(self,advisor_id,student_id,status,message):
         table_c = tableControl.TableControl()
         date = datetime.datetime.now()
-        if not len(id) < 10 and type(id) == str:
-            return "Error code : 18"
         if table_c.advisor_reg_control(advisor_id):
             return "Error code : 19"
         if table_c.student_id_control(student_id):
@@ -138,28 +135,12 @@ class Database_insert:
         if not type(message) == str:
             return "Error code : 21"
         curs = self.db.cursor()
-        curs.execute("insert into t_message(id,advisorID,studentID,date,status,message) values (?,?,?,?,?,?)",
-            str(id),
+        curs.execute("insert into t_message(advisorID,studentID,date,status,message) values (?,?,?,?,?)",
             int(advisor_id),
             str(student_id),
             date,
             int(status),
             str(message))
-        curs.commit()
-        return "Succesfull"
-
-    def status_insert(self,id,name,hexcode):
-        if not type(id) == str:
-            return "Error code : 22"
-        if not len(name) < 10 and type(name) == str:
-            return "Error code : 23"
-        if not type(hexcode) == str:
-            return "Error code : 24"
-        curs = self.db.cursor()
-        curs.execute("insert into m_Status(id,name,hexColorCode) values (?,?,?)",
-            id,
-            name,
-            hexcode)
         curs.commit()
         return "Succesfull"
 
@@ -235,7 +216,6 @@ class Database_insert:
         curs.commit()
         return "Succesfull"
 
-    # date nereden gelecek ?
     def semester_insert(self,id,startdate,enddate,name):
         if not type(id) == int:
             return "Error code : 41"
@@ -249,6 +229,63 @@ class Database_insert:
                         name)
         curs.commit()
         return "Succesfull"
+
+    def projects_insert(self,id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
+        if not type(id) == int:
+            return "Error code : 41"
+        if not type(number) == str:
+            return "Error code : 42"
+        if not type(version) == int:
+            return "Error code : 41"
+        if not type(headline) == str:
+            return "Error code : 42"
+        if not type(matter) == str:
+            return "Error code : 41"
+        if not type(cont) == str:
+            return "Error code : 42"
+        if not type(purpose) == str:
+            return "Error code : 41"
+        if not type(keyword) == str:
+            return "Error code : 42"
+        if not type(metariel) == str:
+            return "Error code : 42"
+        if not type(method) == str:
+            return "Error code : 41"
+        if not type(poss) == str:
+            return "Error code : 42"
+        if not type(status) == int:
+            return "Error code : 42"
+        if not type(descr) == str:
+            return "Error code : 41"
+        if not type(maxplag) == str:
+            return "Error code : 42"
+        if not type(semeterid) == int:
+            return "Error code : 42"
+        if not type(studentid) == str:
+            return "Error code : 41"
+        curs = self.db.cursor()
+        curs.execute("insert into t_Projects(id,number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,maxPlagiarism,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        id,
+                        number,
+                        version,
+                        headline,
+                         matter,
+                         cont,
+                         purpose,
+                         keyword,
+                         metariel,
+                         method,
+                         poss,
+                         status,
+                         descr,
+                         maxplag,
+                         semeterid,
+                         studentid,
+                         insertiondate,
+                         updatedate
+                     )
+        curs.commit()
+        return "Succesfull"
     #Project tablosunda content ne ?
 
 dbase = Database_insert()
@@ -257,6 +294,7 @@ dbase = Database_insert()
 #print(a)
 #b = dbase.faculty_insert("2","bilisim")
 #print(b)
-
+date = datetime.datetime.now()
+#dbase.projects_insert(5,"23awd",1,"headln","matter","contetnt","purpose","keyword","metariel","method","poss",5,"desc","maxplag",0,"111",date,date)
 
 
