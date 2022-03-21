@@ -1,6 +1,6 @@
 # key
-git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git
-git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git
+git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git  
+git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git  
 
 ## Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable) [duplicate]
 
@@ -36,7 +36,7 @@ curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list >
 exit  
 sudo apt-get update  
 sudo ACCEPT_EULA=Y apt-get install -y msodbcsql17  
-sudo ACCEPT_EULA=Y apt-get install -y mssql-tools
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc
-sudo apt-get install -y unixodbc-dev
+sudo ACCEPT_EULA=Y apt-get install -y mssql-tools  
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc  
+source ~/.bashrc  
+sudo apt-get install -y unixodbc-dev  
