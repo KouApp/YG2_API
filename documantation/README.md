@@ -40,3 +40,9 @@ sudo ACCEPT_EULA=Y apt-get install -y mssql-tools
 echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc  
 source ~/.bashrc  
 sudo apt-get install -y unixodbc-dev  
+
+
+## hataların sayfası google için
+https://stackoverflow.com/questions/46405777/connect-docker-python-to-sql-server-with-pyodbc  
+https://stackoverflow.com/questions/50333650/install-python-package-in-docker-file  
+https://askubuntu.com/questions/1109982/e-could-not-get-lock-var-lib-dpkg-lock-frontend-open-11-resource-temporari  
