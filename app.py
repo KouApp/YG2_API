@@ -18,7 +18,7 @@ def test():
 def test2():
 	print('[INFO]--[test]--[FUNCTION]')
 	name = request.form['name']
-	return jsonify({'names':name})
+	return name
 
 if __name__ == '__main__':
 	app.run()
