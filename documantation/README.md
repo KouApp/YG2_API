@@ -46,3 +46,6 @@ sudo apt-get install -y unixodbc-dev
 https://stackoverflow.com/questions/46405777/connect-docker-python-to-sql-server-with-pyodbc  
 https://stackoverflow.com/questions/50333650/install-python-package-in-docker-file  
 https://askubuntu.com/questions/1109982/e-could-not-get-lock-var-lib-dpkg-lock-frontend-open-11-resource-temporari  
+
+## Dockerfile alıntısı  
+https://github.com/mkleehammer/pyodbc/issues/165  
