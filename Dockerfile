@@ -5,6 +5,8 @@ FROM python:3.6.12-stretch
 
 RUN pip install --upgrade pip
 
+WORKDIR /main
+
 COPY requirements.txt requirements.txt
 
 RUN apt-get update \
@@ -15,8 +17,6 @@ RUN apt-get update \
   && ACCEPT_EULA=Y apt-get install -y msodbcsql17
 
 COPY . .
-
-WORKDIR /main
 
 RUN apt-get update && apt-get install -y unixodbc-dev
 
