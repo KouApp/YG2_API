@@ -1,6 +1,5 @@
 import pyodbc
 import table_control as tableControl
-# print(pyodbc.__file__)
 import datetime
 
 class Database_insert:
@@ -76,9 +75,9 @@ class Database_insert:
                 except:
                     return "Critical : 2"
             else:
-                return "Error code : 12"
+                return "Error code : 13"
         else:
-            return "Error code : 13"
+            return "Error code : 12"
 
     def department_insert(self,depart_id,faculty_id,name):
         table_c = tableControl.TableControl()
@@ -94,11 +93,11 @@ class Database_insert:
                     except:
                         return "Critical : 3"
                 else:
-                    return "Error code : 14"
+                    return "Error code : 16"
             else:
                 return "Error code : 15"
         else:
-            return "Error code : 16"
+            return "Error code : 14"
 
     def advisor_insert(self,reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password):
         table_c = tableControl.TableControl()
