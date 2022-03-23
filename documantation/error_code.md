@@ -1,7 +1,7 @@
 # Error page
 Hata kodları ve açıklamaları verilmiştir.  
 ## İnsert Error chapter  
-**Error code : 1** Öğrenci numarası gerekenden fazla karakter içeriyor veya öğrenci zaten kayıtlıdır.  
+<span style="color:blue">**Error code : 1**</span> Öğrenci numarası gerekenden fazla karakter içeriyor veya öğrenci zaten kayıtlıdır.  
 **Error code : 2** Advisior numarası integer değer olmalıdır.  
 **Error code : 3** İsim uzunluğu gerekenden fazla karakter içeriyor.   
 **Error code : 4** Soyİsim uzunluğu gerekenden fazla karakter içeriyor.  
