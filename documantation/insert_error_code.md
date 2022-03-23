@@ -1,7 +1,7 @@
 # İnsert Error chapter 
 Eğer Kayıt olurken bir hata aldıysanız aşağıdaki kodlardan birine sahip olmalısınız.    
 Hata kodları ve durumları yeterli değilse lütfen APİ methodlarını gözden geçirin.  
-[insert APİ](documantation/insert_api.md)   
+[insert APİ](https://github.com/KouApp/yaz1Api/blob/main/documantation/insert_api.md)   
 🔴**Error code : 1**   Öğrenci numarası gerekenden fazla karakter içeriyor veya öğrenci zaten kayıtlıdır.  
 🔴**Error code : 2**   Advisior numarası integer değer olmalıdır.  
 🔴**Error code : 3**   İsim uzunluğu gerekenden fazla karakter içeriyor.   
