@@ -21,32 +21,43 @@ $response = curl_exec($curl);
 curl_close($curl);
 echo $response;
 ```
-('/studentInsert',methods=['POST'])  
-student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password   
+###  studentInsert
+http://172.105.73.62:5000/studentInsert   
+request key = student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password  
+
+###  facultyInsert
+http://172.105.73.62:5000/facultyInsert   
+request key = faculty_id,name  
+
+###  departmentInsert
+http://172.105.73.62:5000/departmentInsert   
+request key = depart_id,faculty_id,name    
+
+###  advisorInsert
+http://172.105.73.62:5000/advisorInsert   
+request key = reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password   
   
-('/facultyInsert',methods=['POST'])   
-faculty_id,name  
+###  messageInsert
+http://172.105.73.62:5000/messageInsert   
+request key = advisor_id,student_id,status,message    
   
-('/departmentInsert',methods=['POST'])  
-depart_id,faculty_id,name  
+###  dissertationInsert
+http://172.105.73.62:5000/dissertationInsert   
+id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate   
+
+###  reportsInsert
+http://172.105.73.62:5000/reportsInsert   
+id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate   
   
-('/advisorInsert',methods=['POST'])  
-reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password  
+###  plagiarismInsert
+http://172.105.73.62:5000/plagiarismInsert   
+id,mainprojeid,otherprojeid,plagrismrate   
   
-('/messageInsert',methods=['POST'])  
-advisor_id,student_id,status,message  
-  
-('/dissertationInsert',methods=['POST'])  
-id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate  
-  
-('/reportsInsert',methods=['POST'])  
-id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate  
-  
-('/plagiarismInsert',methods=['POST'])  
-id,mainprojeid,otherprojeid,plagrismrate  
-  
-('/semesterInsert',methods=['POST'])  
-id,startdate,enddate,name  
-  
-('/projectsInsert',methods=['POST'])  
-projects_insert  id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate  
+###  semesterInsert
+http://172.105.73.62:5000/semesterInsert   
+id,startdate,enddate,name   
+
+###  projectsInsert
+http://172.105.73.62:5000/projectsInsert   
+projects_insert  id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate   
+
