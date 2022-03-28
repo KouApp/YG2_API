@@ -11,7 +11,6 @@ class Query:
                             )
 
     def faculty_id_query(self,faculty_id):
-
         if len(faculty_id) < 3:
             curs = self.db.cursor()
             curs.execute('SELECT * FROM [abdullah_pys].[m_Faculty]')
@@ -24,6 +23,83 @@ class Query:
         else:
             return "False"
 
-# nse = Query()
+    def department_id_query(self,depart_id):
+        if len(depart_id) < 3:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Department]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[0] == depart_id:
+                    dicte = {"departmentID":data[0],
+                             "facultyID":data[1],
+                             "name":data[2]}
+                    return dicte
+        else:
+            return "False"
+
+    def advisor_id_query(self,regist_id):
+        regist_id = int(regist_id)
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == regist_id:
+                dicte = {"registrationID":data[0],
+                         "name":data[1],
+                         "surname":data[2],
+                         "title":data[3],
+                         "mail":data[4],
+                         "departmentID":data[5],
+                         "facultyID":data[6],
+                         "photoPath":data[7],
+                         "password":data[8]}
+                return dicte
+            else:
+                return "False"
+
+    def message_id_query(self,msg_id):
+        msg_id = str(msg_id)
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_message]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == msg_id:
+                dicte = {"id":data[0],
+                         "advisorID":data[1],
+                         "studentID":data[2],
+                         "date":data[3],
+                         "status":data[4],
+                         "message":data[5]}
+                return dicte
+            else:
+                return "False"
+
+    def student_id_query(self,student_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0].split()[0] == student_id:
+                dicte = {"studentID":data[0],
+                         "advisorID":data[1],
+                         "name":data[2],
+                         "surname":data[3],
+                         "mail":data[4],
+                         "phoneNumber":data[5],
+                         "departmentID":data[6],
+                         "facultyID":data[7],
+                         "class":data[8],
+                         "photoPath":data[9],
+                         "password":data[10]}
+                return dicte
+            else:
+                return "False"
+
+
+nse = Query()
+print(nse.student_id_query("111"))
+# print(nse.message_id_query("1"))
+# print(nse.advisor_id_query(2))
 # print(nse.faculty_id_query("10"))
+# print(nse.department_id_query("10"))
 # print(type(nse.faculty_id_query("10")))

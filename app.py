@@ -169,5 +169,45 @@ def projectsInsert():
 	result = insert.projects_insert(id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate)
 	return result
 
+@app.route('/facultyQuery',methods=['POST'])
+def facultyQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.faculty_id_query(id)
+	return result
+
+@app.route('/departmentQuery',methods=['POST'])
+def departmentQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.department_id_query(id)
+	return result
+
+@app.route('/advisorQuery',methods=['POST'])
+def advisorQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.advisor_id_query(id)
+	return result
+
+@app.route('/messageQuery',methods=['POST'])
+def messageQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.message_id_query(id)
+	return result
+
+@app.route('/studentQuery',methods=['POST'])
+def studentQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.student_id_query(id)
+	return result
+
 if __name__ == '__main__':
 	app.run()
