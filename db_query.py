@@ -95,9 +95,117 @@ class Query:
             else:
                 return "False"
 
+    def project_id_query(self,project_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == project_id:
+                dicte = {"id":data[0],
+                         "number":data[1],
+                         "version":data[2],
+                         "headline":data[3],
+                         "matter":data[4],
+                         "[content]":data[5],
+                         "purpose":data[6],
+                         "keyword":data[7],
+                         "materiel":data[8],
+                         "method":data[9],
+                         "possibility":data[10],
+                         "status":data[11],
+                         "description":data[12],
+                         "maxPlagiarism":data[13],
+                         "semesterID":data[14],
+                         "studentID":data[15],
+                         "instertionDate":data[16],
+                         "updateDate":data[17]}
+                return dicte
 
+    def semester_id_query(self,semester_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_semester]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == semester_id:
+                dicte = {"id":data[0],
+                         "startDate":data[1],
+                         "endDate":data[2],
+                         "name":data[3]}
+                return dicte
+
+    def plagiarism_id_query(self,pilagiarism_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Plagiarism]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == pilagiarism_id:
+                dicte = {"id":data[0],
+                         "mainProjeID":data[1],
+                         "otherProjeID":data[2],
+                         "plagiarismRate":data[3]}
+                return dicte
+
+    def reports_id_query(self,reports_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_reports]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == reports_id:
+                dicte = {"id":data[0],
+                         "projectNumber":data[1],
+                         "pdfPath":data[2],
+                         "docPath":data[3],
+                         "status":data[4],
+                         "description":data[5],
+                         "insertionDate":data[6],
+                         "updateDate":data[7]}
+                return dicte
+
+    def dissertation_id_query(self,dis_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Dissertation]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == dis_id:
+                dicte = {"id":data[0],
+                         "projectNumber":data[1],
+                         "pdfPath":data[2],
+                         "docPath":data[3],
+                         "status":data[4],
+                         "description":data[5],
+                         "insertionDate":data[6],
+                         "updateDate":data[7]}
+                return dicte
+
+    def status_id_query(self,status_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_Status]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == status_id:
+                dicte = {"id":data[0],
+                         "name":data[1],
+                         "hexColorCode":data[2]}
+                return dicte
+
+    def superadmin_id_query(self,admin_id):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0] == admin_id:
+                dicte = {"id":data[0],
+                         "name":data[1],
+                         "surname":data[2],
+                         "title":data[3],
+                         "mail":data[4],
+                         "password":data[5]}
+                return dicte
 nse = Query()
-print(nse.student_id_query("111"))
+# print(nse.reports_id_query(0))
+# print(nse.plagiarism_id_query(0))
+# print(nse.semester_id_query(0))
+# print(nse.project_id_query(5))
 # print(nse.message_id_query("1"))
 # print(nse.advisor_id_query(2))
 # print(nse.faculty_id_query("10"))

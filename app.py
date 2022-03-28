@@ -209,5 +209,61 @@ def studentQuery():
 	result = que.student_id_query(id)
 	return result
 
+@app.route('/projectQuery',methods=['POST'])
+def projectQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.project_id_query(id)
+	return result
+
+@app.route('/semesterQuery',methods=['POST'])
+def semesterQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.semester_id_query(id)
+	return result
+
+@app.route('/plagiarismQuery',methods=['POST'])
+def plagiarismQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.plagiarism_id_query(id)
+	return result
+
+@app.route('/reportsQuery',methods=['POST'])
+def reportsQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.reports_id_query(id)
+	return result
+
+@app.route('/dissertationQuery',methods=['POST'])
+def dissertationQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.dissertation_id_query(id)
+	return result
+
+@app.route('/statusQuery',methods=['POST'])
+def statusQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.status_id_query(id)
+	return result
+
+@app.route('/superadminQuery',methods=['POST'])
+def superadminQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.superadmin_id_query(id)
+	return result
+
 if __name__ == '__main__':
 	app.run()
