@@ -96,6 +96,15 @@ class Tester:
         dataTable = curs.fetchall()
         for data in dataTable:
             print("plagriasim Data ### ",data)
+
+    def superadmin_list(self):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        print("superadmin ### id,name,hexcode")
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            print("superadmin Data ### ",data)
 testing = Tester()
 # testing.faculty_list()
 # testing.department_list()
@@ -107,3 +116,4 @@ testing.projects_list()
 testing.semester_list()
 testing.dissertation_list()
 testing.plagriasim_list()
+testing.superadmin_list()

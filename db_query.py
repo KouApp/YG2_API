@@ -201,7 +201,33 @@ class Query:
                          "mail":data[4],
                          "password":data[5]}
                 return dicte
+
+    def login_query(self,no,password):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            if data[0].strip() == no and data[10]==password:
+                return "ogrenci"
+
+        curs1 = self.db.cursor()
+        curs1.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
+        dataTable1 = curs1.fetchall()
+        for data in dataTable1:
+            if data[4] == no and data[5]==password:
+                return "superadmin"
+
+        curs2 = self.db.cursor()
+        curs2.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+        dataTable2 = curs2.fetchall()
+        for data in dataTable2:
+            if data[0] == int(no) and data[8]==password:
+                return "advisor"
+
 # nse = Query()
+# print(nse.login_query("1","paswrd")) # advisor
+# print(nse.login_query("111","aad")) # student
+# print(nse.login_query("pys@abdullahaligun.com","admin")) # super admin
 # print(nse.reports_id_query(0))
 # print(nse.plagiarism_id_query(0))
 # print(nse.semester_id_query(0))
