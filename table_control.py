@@ -59,7 +59,7 @@ class TableControl:
             return True
         else:
             return False
-tableControl = TableControl()
+# tableControl = TableControl()
 # print(tableControl.faculty_id_control("2"))
-#print(tableControl.student_id_control("111"))
-#print(tableControl.department_id_control("10"))
+# print(tableControl.student_id_control("111"))
+# print(tableControl.department_id_control("10"))

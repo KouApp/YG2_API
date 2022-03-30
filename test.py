@@ -10,18 +10,50 @@ class test:
                             'PWD=@PassWord123;'
                             )
 
-    def student(self):
-        curs = self.db.cursor()
-        curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
-        dataTable = curs.fetchall()
-        for data in dataTable:
-            try:
-                assert type(data[0]) == int
-
-            except AssertionError:
-                print("{} string değil.".format(data[0]))
+    def projects_insert(self,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
+        try:
+            curs = self.db.cursor()
+            curs.execute("insert into t_Projects(number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,maxPlagiarism,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            number,
+                            version,
+                            headline,
+                             matter,
+                             cont,
+                             purpose,
+                             keyword,
+                             metariel,
+                             method,
+                             poss,
+                             status,
+                             descr,
+                             maxplag,
+                             semeterid,
+                             studentid,
+                             insertiondate,
+                             updatedate)
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
 
 
 nesne = test()
-nesne.student()
+print(nesne.projects_insert("16",
+                            0,
+                            "test headline",
+                            "test matter",
+                            "test content",
+                            "test purpose",
+                            "test keywords",
+                            "test metariel",
+                            "test method",
+                            "test poss",
+                            0,
+                            "test description",
+                            "0000000000",
+                            0,
+                            "112",
+                            "2022-03-30 14:29:39",
+                            "2022-03-30 14:29:39"))
 

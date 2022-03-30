@@ -1,6 +1,8 @@
 import pyodbc
 import table_control as tableControl
 import datetime
+import full_text_search as fullSearch
+import random
 
 class Database_insert:
 
@@ -166,18 +168,7 @@ class Database_insert:
             return e
 
     def dissertation_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
-        if not type(id) == int:
-            return "Error code : 30"
-        if not type(projenumber) == str:
-            return "Error code : 31"
-        if not type(pdfpath) == str:
-            return "Error code : 32"
-        if not type(docpath) == str:
-            return "Error code : 33"
-        if not type(status) == int:
-            return "Error code : 34"
-        if not type(desc) == str:
-            return "Error code : 35"
+
         try:
             curs = self.db.cursor()
             curs.execute(
@@ -197,18 +188,6 @@ class Database_insert:
             return e
 
     def reports_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
-        if not type(id) == int:
-            return "Error code : 36"
-        if not type(projenumber) == str:
-            return "Error code : 37"
-        if not type(pdfpath) == str:
-            return "Error code : 38"
-        if not type(docpath) == str:
-            return "Error code : 39"
-        if not type(status) == int:
-            return "Error code : 40"
-        if not type(desc) == str:
-            return "Error code : 41"
         try:
             curs = self.db.cursor()
             curs.execute(
@@ -227,19 +206,10 @@ class Database_insert:
             e = str(e)
             return e
 
-    def plagiarism_insert(self,id,mainprojeid,otherprojeid,plagrismrate):
-        if not type(id) == int:
-            return "Error code : 42"
-        if not type(mainprojeid) == int:
-            return "Error code : 43"
-        if not type(otherprojeid) == int:
-            return "Error code : 44"
-        if not type(plagrismrate) == int:
-            return "Error code : 45"
+    def plagiarism_insert(self,mainprojeid,otherprojeid,plagrismrate):
         try:
             curs = self.db.cursor()
-            curs.execute("insert into t_Plagiarism(id,mainProjeID,otherProjeID,plagiarismRate) values (?,?,?,?)",
-                         id,
+            curs.execute("insert into t_Plagiarism(mainProjeID,otherProjeID,plagiarismRate) values (?,?,?)",
                          mainprojeid,
                          otherprojeid,
                          plagrismrate)
@@ -250,10 +220,6 @@ class Database_insert:
             return e
 
     def semester_insert(self,id,startdate,enddate,name):
-        if not type(id) == int:
-            return "Error code : 46"
-        if not type(name) == str:
-            return "Error code : 47"
         try:
             curs = self.db.cursor()
             curs.execute("insert into m_semester(id,startDate,endDate,name) values (?,?,?,?)",
@@ -267,47 +233,12 @@ class Database_insert:
             e = str(e)
             return e
 
-    def projects_insert(self,id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
-        id = int(id)
-        if not type(id) == int:
-            return "Error code : 48"
-        if not type(number) == str:
-            return "Error code : 49"
-        version = int(version)
-        if not type(version) == int:
-            return "Error code : 50"
-        if not type(headline) == str:
-            return "Error code : 51"
-        if not type(matter) == str:
-            return "Error code : 52"
-        if not type(cont) == str:
-            return "Error code : 53"
-        if not type(purpose) == str:
-            return "Error code : 54"
-        if not type(keyword) == str:
-            return "Error code : 55"
-        if not type(metariel) == str:
-            return "Error code : 56"
-        if not type(method) == str:
-            return "Error code : 57"
-        if not type(poss) == str:
-            return "Error code : 58"
-        status = int(status)
-        if not type(status) == int:
-            return "Error code : 59"
-        if not type(descr) == str:
-            return "Error code : 60"
-        if not type(maxplag) == str:
-            return "Error code : 61"
-        semeterid = int(semeterid)
-        if not type(semeterid) == int:
-            return "Error code : 62"
-        if not type(studentid) == str:
-            return "Error code : 63"
+    def projects_insert(self,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
         try:
+            deg = random.randint(1000,9999)
+            number = str(studentid[:8]) + str(deg)
             curs = self.db.cursor()
-            curs.execute("insert into t_Projects(id,number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,maxPlagiarism,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                            id,
+            curs.execute("insert into t_Projects(number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,maxPlagiarism,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                             number,
                             version,
                             headline,
@@ -324,23 +255,24 @@ class Database_insert:
                              semeterid,
                              studentid,
                              insertiondate,
-                             updatedate
-                         )
+                             updatedate)
             curs.commit()
+            search = fullSearch.Search()
+            search.allin(number)
             return "Successful"
         except Exception as e:
             e = str(e)
             return e
 
-# date = datetime.datetime.now()
-# print(date)
-#
+
+
 # nesne = Database_insert()
-# print(nesne.dissertation_insert(0,"0","test","test",0,"test",date,date))
-# print(nesne.projects_insert(0,"0",0,"test headline",
-#                             "test matter",
-#                             "test content",
-#                             "test purpose",
+#
+# print(nesne.projects_insert(0,
+#                             "test headline headline",
+#                             "test test test",
+#                             "test content nasılsın",
+#                             "test purpose naber",
 #                             "test keywords",
 #                             "test metariel",
 #                             "test method",
@@ -349,5 +281,6 @@ class Database_insert:
 #                             "test description",
 #                             "0000000000",
 #                             0,
-#                             "112",
-#                             "2022-03-30 14:29:39","2022-03-30 14:29:39"))
+#                             "114",
+#                             "2022-03-30 14:29:39",
+#                             "2022-03-30 14:29:39"))

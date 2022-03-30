@@ -87,9 +87,18 @@ class Tester:
         dataTable = curs.fetchall()
         for data in dataTable:
             print("Dissertation Data ### ",data)
+
+    def plagriasim_list(self):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        print("plagriasim ### id,name,hexcode")
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Plagiarism]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            print("plagriasim Data ### ",data)
 testing = Tester()
-#testing.faculty_list()
-#testing.department_list()
+# testing.faculty_list()
+# testing.department_list()
 testing.student_list()
 testing.advisor_list()
 testing.message_list()
@@ -97,3 +106,4 @@ testing.status_list()
 testing.projects_list()
 testing.semester_list()
 testing.dissertation_list()
+testing.plagriasim_list()
