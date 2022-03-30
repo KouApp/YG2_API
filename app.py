@@ -265,5 +265,15 @@ def superadminQuery():
 	result = que.superadmin_id_query(id)
 	return result
 
+@app.route('/loginQuery',methods=['POST'])
+def loginQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	password = request.form['password']
+	que = db_query.Query()
+	result = que.login_query(no,password)
+	return result
+
+
 if __name__ == '__main__':
 	app.run()

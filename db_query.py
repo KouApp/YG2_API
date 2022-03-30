@@ -224,17 +224,6 @@ class Query:
             if data[0] == int(no) and data[8]==password:
                 return "advisor"
 
-    def student_advisor_query(self,studentno):
-        try:
-            curs = self.db.cursor()
-            curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
-            dataTable = curs.fetchall()
-            for data in dataTable:
-                if data[0].strip() == studentno:
-                    return data[1]
-        except Exception as e:
-            e = str(e)
-            return e
 
 # nse = Query()
 # print(nse.student_advisor_query("111"))
