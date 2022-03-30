@@ -201,7 +201,7 @@ class Query:
                          "mail":data[4],
                          "password":data[5]}
                 return dicte
-nse = Query()
+# nse = Query()
 # print(nse.reports_id_query(0))
 # print(nse.plagiarism_id_query(0))
 # print(nse.semester_id_query(0))

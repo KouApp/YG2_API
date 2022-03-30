@@ -60,8 +60,9 @@ class Database_insert:
                 str(password))
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 1"
+        except Exception as e:
+            e = str(e)
+            return e
 
     def faculty_insert(self,faculty_id,name):
         table_c = tableControl.TableControl()
@@ -72,8 +73,9 @@ class Database_insert:
                     curs.execute("insert into m_Faculty(facultyID, name) values (?, ?)", str(faculty_id), str(name))
                     curs.commit()
                     return "Successful"
-                except:
-                    return "Critical : 2"
+                except Exception as e:
+                    e = str(e)
+                    return e
             else:
                 return "Error code : 13"
         else:
@@ -90,8 +92,9 @@ class Database_insert:
                                      str(depart_id), str(faculty_id), str(name))
                         curs.commit()
                         return "Successful"
-                    except:
-                        return "Critical : 3"
+                    except Exception as e:
+                        e = str(e)
+                        return e
                 else:
                     return "Error code : 16"
             else:
@@ -133,8 +136,9 @@ class Database_insert:
                 str(password))
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 4"
+        except Exception as e:
+            e = str(e)
+            return e
 
     def messsage_insert(self,advisor_id,student_id,status,message):
         table_c = tableControl.TableControl()
@@ -157,8 +161,9 @@ class Database_insert:
                          str(message))
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 5"
+        except Exception as e:
+            e = str(e)
+            return e
 
     def dissertation_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
         if not type(id) == int:
@@ -176,7 +181,7 @@ class Database_insert:
         try:
             curs = self.db.cursor()
             curs.execute(
-                "insert into m_Dissertation(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?,?)",
+                "insert into t_Dissertation(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?,?)",
                 id,
                 projenumber,
                 pdfpath,
@@ -187,8 +192,9 @@ class Database_insert:
                 updatedate)
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 6"
+        except Exception as e:
+            e = str(e)
+            return e
 
     def reports_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
         if not type(id) == int:
@@ -217,9 +223,9 @@ class Database_insert:
                 updatedate)
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 7"
-
+        except Exception as e:
+            e = str(e)
+            return e
 
     def plagiarism_insert(self,id,mainprojeid,otherprojeid,plagrismrate):
         if not type(id) == int:
@@ -239,9 +245,9 @@ class Database_insert:
                          plagrismrate)
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 8"
-
+        except Exception as e:
+            e = str(e)
+            return e
 
     def semester_insert(self,id,startdate,enddate,name):
         if not type(id) == int:
@@ -257,14 +263,17 @@ class Database_insert:
                          name)
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 9"
+        except Exception as e:
+            e = str(e)
+            return e
 
     def projects_insert(self,id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
+        id = int(id)
         if not type(id) == int:
             return "Error code : 48"
         if not type(number) == str:
             return "Error code : 49"
+        version = int(version)
         if not type(version) == int:
             return "Error code : 50"
         if not type(headline) == str:
@@ -283,12 +292,14 @@ class Database_insert:
             return "Error code : 57"
         if not type(poss) == str:
             return "Error code : 58"
+        status = int(status)
         if not type(status) == int:
             return "Error code : 59"
         if not type(descr) == str:
             return "Error code : 60"
         if not type(maxplag) == str:
             return "Error code : 61"
+        semeterid = int(semeterid)
         if not type(semeterid) == int:
             return "Error code : 62"
         if not type(studentid) == str:
@@ -317,6 +328,26 @@ class Database_insert:
                          )
             curs.commit()
             return "Successful"
-        except:
-            return "Critical : 10"
+        except Exception as e:
+            e = str(e)
+            return e
 
+# date = datetime.datetime.now()
+# print(date)
+#
+# nesne = Database_insert()
+# print(nesne.dissertation_insert(0,"0","test","test",0,"test",date,date))
+# print(nesne.projects_insert(0,"0",0,"test headline",
+#                             "test matter",
+#                             "test content",
+#                             "test purpose",
+#                             "test keywords",
+#                             "test metariel",
+#                             "test method",
+#                             "test poss",
+#                             0,
+#                             "test description",
+#                             "0000000000",
+#                             0,
+#                             "112",
+#                             "2022-03-30 14:29:39","2022-03-30 14:29:39"))

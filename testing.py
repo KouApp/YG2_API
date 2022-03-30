@@ -69,6 +69,24 @@ class Tester:
         dataTable = curs.fetchall()
         for data in dataTable:
             print("Projects Data ### ",data)
+
+    def semester_list(self):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        print("SEMESTER ### id,name,hexcode")
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[m_semester]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            print("Semester Data ### ",data)
+
+    def dissertation_list(self):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        print("Dissertation ### id,name,hexcode")
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Dissertation]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            print("Dissertation Data ### ",data)
 testing = Tester()
 #testing.faculty_list()
 #testing.department_list()
@@ -77,3 +95,5 @@ testing.advisor_list()
 testing.message_list()
 testing.status_list()
 testing.projects_list()
+testing.semester_list()
+testing.dissertation_list()
