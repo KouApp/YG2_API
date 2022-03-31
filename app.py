@@ -278,9 +278,10 @@ def loginQuery():
 def passwordChange():
 	print('[INFO]--[test]--[FUNCTION]')
 	no = request.form['no']
-	password = request.form['password']
+	old_password = request.form['old_pass']
+	new_password = request.form['new_pass']
 	update = db_update.Update()
-	result = update.studentPasswordChange(no,password)
+	result = update.studentPasswordChange(no,old_password,new_password)
 	return result
 
 if __name__ == '__main__':
