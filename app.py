@@ -292,5 +292,13 @@ def studentProject():
 	result = que.student_project_query(no)
 	return result
 
+@app.route('/advisorStudent',methods=['POST'])
+def advisorStudent():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	que = db_query.Query()
+	result = que.advisor_student_query(no)
+	return result
+
 if __name__ == '__main__':
 	app.run()

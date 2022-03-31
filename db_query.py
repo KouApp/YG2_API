@@ -240,8 +240,24 @@ class Query:
             e = str(e)
             return e
 
+    def advisor_student_query(self,advisor_no):
+        try:
+            curs = self.db.cursor()
+            dicte = {}
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                if data[1] == int(advisor_no):
+                    count +=1
+                    dicte.update({count:data})
+            return dicte
+        except Exception as e:
+            e = str(e)
+            return e
 
 # nse = Query()
+# print(nse.advisor_student_query(1))
 # print(nse.student_project_query("111"))
 # print(nse.student_advisor_query("111"))
 # print(nse.login_query("1","paswrd")) # advisor
