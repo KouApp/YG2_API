@@ -256,7 +256,27 @@ class Query:
             e = str(e)
             return e
 
+    def proje_plagiarism_query(self,main_projeno):
+        try:
+            curs = self.db.cursor()
+            dicte = {}
+            curs.execute('SELECT * FROM [abdullah_pys].[t_Plagiarism]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+
+                if int(data[1]) == main_projeno:
+                    count += 1
+                    dicte.update({count : {int(data[2]):int(data[3])}})
+                if int(data[2]) == main_projeno:
+                    count += 1
+                    dicte.update({count : {int(data[1]):int(data[3])}})
+            return dicte
+        except Exception as e:
+            e = str(e)
+            return e
 # nse = Query()
+# print(nse.proje_plagiarism_query(1124835))
 # print(nse.advisor_student_query(1))
 # print(nse.student_project_query("111"))
 # print(nse.student_advisor_query("111"))

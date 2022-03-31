@@ -300,5 +300,13 @@ def advisorStudent():
 	result = que.advisor_student_query(no)
 	return result
 
+@app.route('/plagiarismRate',methods=['POST'])
+def plagiarismRate():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['mainProjeid']
+	que = db_query.Query()
+	result = que.proje_plagiarism_query(no)
+	return result
+
 if __name__ == '__main__':
 	app.run()
