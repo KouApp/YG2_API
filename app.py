@@ -281,7 +281,7 @@ def passwordChange():
 	old_password = request.form['old_pass']
 	new_password = request.form['new_pass']
 	update = db_update.Update()
-	result = update.studentPasswordChange(no,old_password,new_password)
+	result = update.PasswordChange(no,old_password,new_password)
 	return result
 
 if __name__ == '__main__':

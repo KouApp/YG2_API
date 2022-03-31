@@ -10,13 +10,23 @@ class Update:
                             'UID=abdullah_pys;'
                             'PWD=@PassWord123;'
                             )
-    def studentPasswordChange(self,student_no,old_pass,new_pass):
+    def PasswordChange(self,no,old_pass,new_pass):
         query = dbq.Query()
         try:
-            result = query.login_query(student_no,old_pass)
+            result = query.login_query(no,old_pass)
             if result == "ogrenci":
                 cursor = self.db.cursor()
-                cursor.execute("UPDATE m_Student SET password = ? WHERE studentID = ? AND password = ?", new_pass, student_no,old_pass)
+                cursor.execute("UPDATE m_Student SET password = ? WHERE studentID = ? AND password = ?", new_pass, no,old_pass)
+                self.db.commit()
+                return "Successful"
+            elif result == "advisor":
+                cursor = self.db.cursor()
+                cursor.execute("UPDATE m_Advisor SET password = ? WHERE registrationID = ? AND password = ?", new_pass, int(no),old_pass)
+                self.db.commit()
+                return "Successful"
+            elif result == "superadmin":
+                cursor = self.db.cursor()
+                cursor.execute("UPDATE m_superAdmin SET password = ? WHERE mail = ? AND password = ?", new_pass, no,old_pass)
                 self.db.commit()
                 return "Successful"
             else:
@@ -26,4 +36,4 @@ class Update:
             return e
 
 nesne = Update()
-print(nesne.studentPasswordChange("111","yeninew2","yeninew3"))
+print(nesne.PasswordChange("pys@abdullahaligun.com","admin","yeninew4"))
