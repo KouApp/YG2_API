@@ -38,22 +38,5 @@ class test:
             return e
 
 
-nesne = test()
-print(nesne.projects_insert("16",
-                            0,
-                            "test headline",
-                            "test matter",
-                            "test content",
-                            "test purpose",
-                            "test keywords",
-                            "test metariel",
-                            "test method",
-                            "test poss",
-                            0,
-                            "test description",
-                            "0000000000",
-                            0,
-                            "112",
-                            "2022-03-30 14:29:39",
-                            "2022-03-30 14:29:39"))
+
 

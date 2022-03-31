@@ -35,5 +35,5 @@ class Update:
             e = str(e)
             return e
 
-nesne = Update()
-print(nesne.PasswordChange("pys@abdullahaligun.com","admin","yeninew4"))
+# nesne = Update()
+# print(nesne.PasswordChange("pys@abdullahaligun.com","admin","yeninew4"))

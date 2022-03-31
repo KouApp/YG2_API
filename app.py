@@ -225,18 +225,10 @@ def semesterQuery():
 	result = que.semester_id_query(id)
 	return result
 
-@app.route('/plagiarismQuery',methods=['POST'])
-def plagiarismQuery():
-	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
-	que = db_query.Query()
-	result = que.plagiarism_id_query(id)
-	return result
-
 @app.route('/reportsQuery',methods=['POST'])
 def reportsQuery():
 	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
+	id = request.form['projeno']
 	que = db_query.Query()
 	result = que.reports_id_query(id)
 	return result
@@ -244,7 +236,7 @@ def reportsQuery():
 @app.route('/dissertationQuery',methods=['POST'])
 def dissertationQuery():
 	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
+	id = request.form['projeno']
 	que = db_query.Query()
 	result = que.dissertation_id_query(id)
 	return result
@@ -260,9 +252,9 @@ def statusQuery():
 @app.route('/superadminQuery',methods=['POST'])
 def superadminQuery():
 	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
+	mail = request.form['mail']
 	que = db_query.Query()
-	result = que.superadmin_id_query(id)
+	result = que.superadmin_id_query(mail)
 	return result
 
 @app.route('/loginQuery',methods=['POST'])
@@ -272,16 +264,6 @@ def loginQuery():
 	password = request.form['password']
 	que = db_query.Query()
 	result = que.login_query(no,password)
-	return result
-
-@app.route('/passwordChange',methods=['POST'])
-def passwordChange():
-	print('[INFO]--[test]--[FUNCTION]')
-	no = request.form['no']
-	old_password = request.form['old_pass']
-	new_password = request.form['new_pass']
-	update = db_update.Update()
-	result = update.PasswordChange(no,old_password,new_password)
 	return result
 
 @app.route('/studentProject',methods=['POST'])
@@ -306,6 +288,16 @@ def plagiarismRate():
 	no = request.form['mainProjeid']
 	que = db_query.Query()
 	result = que.proje_plagiarism_query(no)
+	return result
+
+@app.route('/passwordChange',methods=['POST'])
+def passwordChange():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	old_password = request.form['old_pass']
+	new_password = request.form['new_pass']
+	update = db_update.Update()
+	result = update.PasswordChange(no,old_password,new_password)
 	return result
 
 if __name__ == '__main__':

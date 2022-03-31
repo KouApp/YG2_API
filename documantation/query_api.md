@@ -57,25 +57,15 @@ http://172.105.73.62:5000/semesterQuery
 request key = id  
 request value = semester no  
 
-###  semesterQuery
-http://172.105.73.62:5000/semesterQuery   
-request key = id  
-request value = semester no  
-
-###  plagiarismQuery
-http://172.105.73.62:5000/plagiarismQuery   
-request key = id  
-request value = plag no  
-
 ###  reportsQuery
 http://172.105.73.62:5000/reportsQuery   
-request key = id  
-request value = reports no  
+request key = projeno  
+request value = projectNumber 
 
 ###  dissertationQuery
 http://172.105.73.62:5000/dissertationQuery   
-request key = id  
-request value = dissert no  
+request key = projeno  
+request value = projectNumber
 
 ###  statusQuery
 http://172.105.73.62:5000/statusQuery   

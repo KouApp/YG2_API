@@ -267,6 +267,7 @@ class Database_insert:
 
 
 # nesne = Database_insert()
+# print(nesne.messsage_insert(1,"111",0,"Test"))
 #
 # print(nesne.projects_insert(0,
 #                             "test headline headline",

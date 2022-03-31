@@ -36,7 +36,6 @@ class Tester:
 
     def advisor_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("ADVİSOR ### registrationID, name, surname, title, mail, departmentID, facultyID, photoPath,password")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
         dataTable = curs.fetchall()
@@ -45,7 +44,6 @@ class Tester:
 
     def message_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("MESSAGE ### id,advisorİD,studentİD,date,status,message")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[t_message]')
         dataTable = curs.fetchall()
@@ -54,7 +52,6 @@ class Tester:
 
     def status_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("STATUS ### id,name,hexcode")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[m_Status]')
         dataTable = curs.fetchall()
@@ -63,7 +60,6 @@ class Tester:
 
     def projects_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("PROJECTS ### id,name,hexcode")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
         dataTable = curs.fetchall()
@@ -72,7 +68,6 @@ class Tester:
 
     def semester_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("SEMESTER ### id,name,hexcode")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[m_semester]')
         dataTable = curs.fetchall()
@@ -81,7 +76,6 @@ class Tester:
 
     def dissertation_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("Dissertation ### id,name,hexcode")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[t_Dissertation]')
         dataTable = curs.fetchall()
@@ -90,7 +84,6 @@ class Tester:
 
     def plagriasim_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("plagriasim ### id,name,hexcode")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[t_Plagiarism]')
         dataTable = curs.fetchall()
@@ -99,21 +92,30 @@ class Tester:
 
     def superadmin_list(self):
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print("superadmin ### id,name,hexcode")
         curs = self.db.cursor()
         curs.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
         dataTable = curs.fetchall()
         for data in dataTable:
             print("superadmin Data ### ",data)
-testing = Tester()
+
+    def reports_list(self):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_reports]')
+        dataTable = curs.fetchall()
+        for data in dataTable:
+            print("reports Data ### ",data)
+
+# testing = Tester()
 # testing.faculty_list()
 # testing.department_list()
-testing.student_list()
-testing.advisor_list()
-testing.message_list()
-testing.status_list()
-testing.projects_list()
-testing.semester_list()
-testing.dissertation_list()
-testing.plagriasim_list()
-testing.superadmin_list()
+# testing.student_list()
+# testing.advisor_list()
+# testing.message_list()
+# testing.status_list()
+# testing.projects_list()
+# testing.semester_list()
+# testing.dissertation_list()
+# testing.plagriasim_list()
+# testing.superadmin_list()
+# testing.reports_list()
