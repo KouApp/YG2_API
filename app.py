@@ -1,7 +1,7 @@
 from flask import Flask,jsonify,request
 import db_insert
 import db_query
-
+import db_update
 # Fonksiyon isimlerini kontrol et
 # nesneden çağırılan metodları kontrol et
 # dönüş değerlerini kontrol et
@@ -274,6 +274,14 @@ def loginQuery():
 	result = que.login_query(no,password)
 	return result
 
+@app.route('/passwordChange',methods=['POST'])
+def passwordChange():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	password = request.form['password']
+	update = db_update.Update()
+	result = update.studentPasswordChange(no,password)
+	return result
 
 if __name__ == '__main__':
 	app.run()
