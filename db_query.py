@@ -224,8 +224,25 @@ class Query:
             if data[0] == int(no) and data[8]==password:
                 return "advisor"
 
+    def student_project_query(self,student_no):
+        try:
+            curs = self.db.cursor()
+            dicte = {}
+            curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                if data[15].strip() == student_no:
+                    count +=1
+                    dicte.update({count:data})
+            return dicte
+        except Exception as e:
+            e = str(e)
+            return e
+
 
 # nse = Query()
+# print(nse.student_project_query("111"))
 # print(nse.student_advisor_query("111"))
 # print(nse.login_query("1","paswrd")) # advisor
 # print(nse.login_query("111","aad")) # student

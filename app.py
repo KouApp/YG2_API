@@ -284,5 +284,13 @@ def passwordChange():
 	result = update.PasswordChange(no,old_password,new_password)
 	return result
 
+@app.route('/studentProject',methods=['POST'])
+def studentProject():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	que = db_query.Query()
+	result = que.student_project_query(no)
+	return result
+
 if __name__ == '__main__':
 	app.run()
