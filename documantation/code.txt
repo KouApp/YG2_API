@@ -1,0 +1,1225 @@
+from flask import Flask,jsonify,request
+import db_insert
+import db_query
+import db_update
+# Fonksiyon isimlerini kontrol et
+# nesneden çağırılan metodları kontrol et
+# dönüş değerlerini kontrol et
+app = Flask(__name__)
+app.config['DEBUG'] = True
+app.config['JSON_SORT_KEYS'] = False
+app.config['ENV'] = 'development'
+
+@app.route('/test',methods=['POST'])
+def test():
+	print('[INFO]--[test]--[FUNCTION]')
+	faculty_id = request.form['faculty_id']
+	quer = db_query.Query()
+	response = quer.faculty_id_query(faculty_id)
+	return response
+
+#student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password
+@app.route('/studentInsert',methods=['POST'])
+def studentInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	student_id = request.form['student_id']
+	advisior_id = request.form['advisior_id']
+	name = request.form['name']
+	surname = request.form['surname']
+	mail = request.form['mail']
+	phone_no = request.form['phone_no']
+	depart_id = request.form['depart_id']
+	faculty_id = request.form['faculty_id']
+	clas = request.form['clas']
+	photo_path = request.form['photo_path']
+	password = request.form['password']
+	insert = db_insert.Database_insert()
+	result = insert.student_insert(student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password)
+	return result
+
+# faculty_id,name
+@app.route('/facultyInsert',methods=['POST'])
+def facultyInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	faculty_id = request.form['faculty_id']
+	name = request.form['name']
+	insert = db_insert.Database_insert()
+	result = insert.faculty_insert(faculty_id,name)
+	return result
+
+# depart_id,faculty_id,name
+@app.route('/departmentInsert',methods=['POST'])
+def departmentInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	faculty_id = request.form['faculty_id']
+	depart_id = request.form['depart_id']
+	name = request.form['name']
+	insert = db_insert.Database_insert()
+	result = insert.department_insert(depart_id,faculty_id,name)
+	return result
+
+# reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password
+@app.route('/advisorInsert',methods=['POST'])
+def advisorInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	reg_id = request.form['reg_id']
+	name = request.form['name']
+	surname = request.form['surname']
+	title = request.form['title']
+	mail = request.form['mail']
+	depart_id = request.form['depart_id']
+	faculty_id = request.form['faculty_id']
+	photo_path = request.form['photo_path']
+	password = request.form['password']
+	insert = db_insert.Database_insert()
+	result = insert.advisor_insert(reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password)
+	return result
+
+# advisor_id,student_id,status,message
+@app.route('/messageInsert',methods=['POST'])
+def messageInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	advisor_id = request.form['advisor_id']
+	student_id = request.form['student_id']
+	status = request.form['status']
+	message = request.form['message']
+	insert = db_insert.Database_insert()
+	result = insert.messsage_insert(advisor_id,student_id,status,message)
+	return result
+
+# id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate
+@app.route('/dissertationInsert',methods=['POST'])
+def dissertationInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	projenumber = request.form['projenumber']
+	pdfpath = request.form['pdfpath']
+	docpath = request.form['docpath']
+	status = request.form['status']
+	desc = request.form['desc']
+	insertdate = request.form['insertdate']
+	updatedate = request.form['updatedate']
+	insert = db_insert.Database_insert()
+	result = insert.dissertation_insert(id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
+	return result
+
+# id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate
+@app.route('/reportsInsert',methods=['POST'])
+def reportsInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	projenumber = request.form['projenumber']
+	pdfpath = request.form['pdfpath']
+	docpath = request.form['docpath']
+	status = request.form['status']
+	desc = request.form['desc']
+	insertdate = request.form['insertdate']
+	updatedate = request.form['updatedate']
+	insert = db_insert.Database_insert()
+	result = insert.reports_insert(id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
+	return result
+
+# id,mainprojeid,otherprojeid,plagrismrate
+@app.route('/plagiarismInsert',methods=['POST'])
+def plagiarismInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	mainprojeid = request.form['mainprojeid']
+	otherprojeid = request.form['otherprojeid']
+	plagrismrate = request.form['plagrismrate']
+	insert = db_insert.Database_insert()
+	result = insert.plagiarism_insert(id,mainprojeid,otherprojeid,plagrismrate)
+	return result
+
+# id,startdate,enddate,name
+@app.route('/semesterInsert',methods=['POST'])
+def semesterInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	startdate = request.form['startdate']
+	enddate = request.form['enddate']
+	name = request.form['name']
+	insert = db_insert.Database_insert()
+	result = insert.semester_insert(id,startdate,enddate,name)
+	return result
+
+# projects_insert  id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate
+@app.route('/projectsInsert',methods=['POST'])
+def projectsInsert():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	number = request.form['number']
+	version = request.form['version']
+	headline = request.form['headline']
+	matter = request.form['matter']
+	cont = request.form['cont']
+	purpose = request.form['purpose']
+	keyword = request.form['keyword']
+	metariel = request.form['metariel']
+	method = request.form['method']
+	poss = request.form['poss']
+	status = request.form['status']
+	descr = request.form['descr']
+	maxplag = request.form['maxplag']
+	semeterid = request.form['semeterid']
+	studentid = request.form['studentid']
+	insertiondate = request.form['insertiondate']
+	updatedate = request.form['updatedate']
+	insert = db_insert.Database_insert()
+	result = insert.projects_insert(id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate)
+	return result
+
+@app.route('/facultyQuery',methods=['POST'])
+def facultyQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.faculty_id_query(id)
+	return result
+
+@app.route('/departmentQuery',methods=['POST'])
+def departmentQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.department_id_query(id)
+	return result
+
+@app.route('/advisorQuery',methods=['POST'])
+def advisorQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.advisor_id_query(id)
+	return result
+
+@app.route('/messageQuery',methods=['POST'])
+def messageQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.message_id_query(id)
+	return result
+
+@app.route('/studentQuery',methods=['POST'])
+def studentQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.student_id_query(id)
+	return result
+
+@app.route('/projectQuery',methods=['POST'])
+def projectQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.project_id_query(id)
+	return result
+
+@app.route('/semesterQuery',methods=['POST'])
+def semesterQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.semester_id_query(id)
+	return result
+
+@app.route('/reportsQuery',methods=['POST'])
+def reportsQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['projeno']
+	que = db_query.Query()
+	result = que.reports_id_query(id)
+	return result
+
+@app.route('/dissertationQuery',methods=['POST'])
+def dissertationQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['projeno']
+	que = db_query.Query()
+	result = que.dissertation_id_query(id)
+	return result
+
+@app.route('/statusQuery',methods=['POST'])
+def statusQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	id = request.form['id']
+	que = db_query.Query()
+	result = que.status_id_query(id)
+	return result
+
+@app.route('/superadminQuery',methods=['POST'])
+def superadminQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	mail = request.form['mail']
+	que = db_query.Query()
+	result = que.superadmin_id_query(mail)
+	return result
+
+@app.route('/loginQuery',methods=['POST'])
+def loginQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	password = request.form['password']
+	que = db_query.Query()
+	result = que.login_query(no,password)
+	return result
+
+@app.route('/studentProject',methods=['POST'])
+def studentProject():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	que = db_query.Query()
+	result = que.student_project_query(no)
+	return result
+
+@app.route('/advisorStudent',methods=['POST'])
+def advisorStudent():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	que = db_query.Query()
+	result = que.advisor_student_query(no)
+	return result
+
+@app.route('/plagiarismRate',methods=['POST'])
+def plagiarismRate():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['mainProjeid']
+	que = db_query.Query()
+	result = que.proje_plagiarism_query(no)
+	return result
+
+@app.route('/passwordChange',methods=['POST'])
+def passwordChange():
+	print('[INFO]--[test]--[FUNCTION]')
+	no = request.form['no']
+	old_password = request.form['old_pass']
+	new_password = request.form['new_pass']
+	update = db_update.Update()
+	result = update.PasswordChange(no,old_password,new_password)
+	return result
+
+if __name__ == '__main__':
+	app.run()
+
+import pyodbc
+import table_control as tableControl
+import datetime
+import full_text_search as fullSearch
+import random
+
+class Database_insert:
+
+    def __init__(self):
+        self.db = pyodbc.connect(
+                            'Driver={ODBC Driver 17 for SQL Server};'
+                            'Server=sql.athena.domainhizmetleri.com;'
+                            'Database=abdullah_pys;'
+                            'UID=abdullah_pys;'
+                            'PWD=@PassWord123;'
+                            )
+    def test(self):
+        imlec = self.db.cursor()
+        imlec.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+        kullanicilar = imlec.fetchall()
+        for i in kullanicilar:
+            print(i)
+
+    def student_insert(self,student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password):
+        table_c = tableControl.TableControl()
+        if not table_c.student_id_control(student_id):
+            return "Error code : 1"
+        if not type(advisior_id) == int:
+            return "Error code : 2"
+        if not len(name) < 105:
+            return "Error code : 3"
+        if not len(surname) < 55:
+            return "Error code : 4"
+        if not len(mail) < 255:
+            return "Error code : 5"
+        if not len(phone_no) < 255:
+            return "Error code : 6"
+        if not table_c.department_id_control(depart_id):
+            return "Error code : 7"
+        if not table_c.faculty_id_control(faculty_id):
+            return "Error code : 8"
+        if not len(clas) < 8:
+            return "Error code : 9"
+        if not type(photo_path) == str:
+            return "Error code : 10"
+        if not len(password) < 255:
+            return "Error code : 11"
+        try:
+            curs = self.db.cursor()
+            curs.execute(
+                "insert into m_Student(studentID,advisorID,name,surname,mail,phoneNumber,departmentID,facultyID,class,photoPath,password) values (?, ?,?,?,?,?,?,?,?,?,?)",
+                str(student_id),
+                int(advisior_id),
+                str(name),
+                str(surname),
+                str(mail),
+                str(phone_no),
+                str(depart_id),
+                str(faculty_id),
+                str(clas),
+                str(photo_path),
+                str(password))
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def faculty_insert(self,faculty_id,name):
+        table_c = tableControl.TableControl()
+        if not table_c.faculty_id_control(faculty_id):
+            if len(name) < 50:
+                try:
+                    curs = self.db.cursor()
+                    curs.execute("insert into m_Faculty(facultyID, name) values (?, ?)", str(faculty_id), str(name))
+                    curs.commit()
+                    return "Successful"
+                except Exception as e:
+                    e = str(e)
+                    return e
+            else:
+                return "Error code : 13"
+        else:
+            return "Error code : 12"
+
+    def department_insert(self,depart_id,faculty_id,name):
+        table_c = tableControl.TableControl()
+        if not table_c.department_id_control(depart_id):
+            if not table_c.faculty_id_control(faculty_id):
+                if len(name) < 55:
+                    try:
+                        curs = self.db.cursor()
+                        curs.execute("insert into m_Department(departmentID, facultyID, name) values (?, ?, ?)",
+                                     str(depart_id), str(faculty_id), str(name))
+                        curs.commit()
+                        return "Successful"
+                    except Exception as e:
+                        e = str(e)
+                        return e
+                else:
+                    return "Error code : 16"
+            else:
+                return "Error code : 15"
+        else:
+            return "Error code : 14"
+
+    def advisor_insert(self,reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password):
+        table_c = tableControl.TableControl()
+        if not table_c.advisor_reg_control(reg_id):
+            return "Error code : 17"
+        if not len(name) < 105:
+            return "Error code : 18"
+        if not len(surname) < 50:
+            return "Error code : 19"
+        if not len(mail) < 255:
+            return "Error code : 20"
+        if not len(title) < 30:
+            return "Error code : 21"
+        if not table_c.department_id_control(depart_id):
+            return "Error code : 22"
+        if not table_c.faculty_id_control(faculty_id):
+            return "Error code : 23"
+        if not type(photo_path) == str:
+            return "Error code : 24"
+        if not len(password) < 255:
+            return "Error code : 25"
+        try:
+            curs = self.db.cursor()
+            curs.execute("insert into m_Advisor(registrationID,name,surname,title,mail,departmentID,facultyID,photoPath,password) values (?,?,?,?,?,?,?,?,?)",
+                str(reg_id),
+                str(name),
+                str(surname),
+                str(title),
+                str(mail),
+                str(depart_id),
+                str(faculty_id),
+                str(photo_path),
+                str(password))
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def messsage_insert(self,advisor_id,student_id,status,message):
+        table_c = tableControl.TableControl()
+        date = datetime.datetime.now()
+        if table_c.advisor_reg_control(advisor_id):
+            return "Error code : 26"
+        if table_c.student_id_control(student_id):
+            return "Error code : 27"
+        if not type(status) == int:
+            return "Error code : 28"
+        if not type(message) == str:
+            return "Error code : 29"
+        try:
+            curs = self.db.cursor()
+            curs.execute("insert into t_message(advisorID,studentID,date,status,message) values (?,?,?,?,?)",
+                         int(advisor_id),
+                         str(student_id),
+                         date,
+                         int(status),
+                         str(message))
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def dissertation_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
+
+        try:
+            curs = self.db.cursor()
+            curs.execute(
+                "insert into t_Dissertation(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?,?)",
+                id,
+                projenumber,
+                pdfpath,
+                docpath,
+                status,
+                desc,
+                insertdate,
+                updatedate)
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def reports_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
+        try:
+            curs = self.db.cursor()
+            curs.execute(
+                "insert into t_reports(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?,?)",
+                id,
+                projenumber,
+                pdfpath,
+                docpath,
+                status,
+                desc,
+                insertdate,
+                updatedate)
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def plagiarism_insert(self,mainprojeid,otherprojeid,plagrismrate):
+        try:
+            curs = self.db.cursor()
+            curs.execute("insert into t_Plagiarism(mainProjeID,otherProjeID,plagiarismRate) values (?,?,?)",
+                         mainprojeid,
+                         otherprojeid,
+                         plagrismrate)
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def semester_insert(self,id,startdate,enddate,name):
+        try:
+            curs = self.db.cursor()
+            curs.execute("insert into m_semester(id,startDate,endDate,name) values (?,?,?,?)",
+                         id,
+                         startdate,
+                         enddate,
+                         name)
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def projects_insert(self,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
+        try:
+            deg = random.randint(1000,9999)
+            number = str(studentid[:8]) + str(deg)
+            curs = self.db.cursor()
+            curs.execute("insert into t_Projects(number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,maxPlagiarism,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            number,
+                            version,
+                            headline,
+                             matter,
+                             cont,
+                             purpose,
+                             keyword,
+                             metariel,
+                             method,
+                             poss,
+                             status,
+                             descr,
+                             maxplag,
+                             semeterid,
+                             studentid,
+                             insertiondate,
+                             updatedate)
+            curs.commit()
+            search = fullSearch.Search()
+            search.allin(number)
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+
+
+# nesne = Database_insert()
+# print(nesne.messsage_insert(1,"111",0,"Test"))
+#
+# print(nesne.projects_insert(0,
+#                             "test headline headline",
+#                             "test test test",
+#                             "test content nasılsın",
+#                             "test purpose naber",
+#                             "test keywords",
+#                             "test metariel",
+#                             "test method",
+#                             "test poss",
+#                             0,
+#                             "test description",
+#                             "0000000000",
+#                             0,
+#                             "114",
+#                             "2022-03-30 14:29:39",
+#                             "2022-03-30 14:29:39"))
+
+import pyodbc
+
+class Query:
+    def __init__(self):
+         self.db = pyodbc.connect(
+                            'Driver={ODBC Driver 17 for SQL Server};'
+                            'Server=sql.athena.domainhizmetleri.com;'
+                            'Database=abdullah_pys;'
+                            'UID=abdullah_pys;'
+                            'PWD=@PassWord123;'
+                            )
+
+    def faculty_id_query(self,faculty_id):
+        if len(faculty_id) < 3:
+            try:
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[m_Faculty]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[0] == faculty_id:
+                        dicte = {"1":data[0],
+                                 "2":data[1]}
+                        return dicte
+                return "Bulunamadi"
+            except Exception as e:
+                e = str(e)
+                return e
+        else:
+            return "False"
+
+    def department_id_query(self,depart_id):
+        if len(depart_id) == 4:
+            try:
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[m_Department]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[0] == depart_id:
+                        dicte = {"departmentID":data[0],
+                                 "facultyID":data[1],
+                                 "name":data[2]}
+                        return dicte
+                return "Bulunamadi"
+            except Exception as e:
+                e = str(e)
+                return e
+        else:
+            return "False"
+
+    def advisor_id_query(self,regist_id):
+        try:
+            if regist_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[0] == int(regist_id):
+                        dicte = {"registrationID":data[0],
+                                 "name":data[1],
+                                 "surname":data[2],
+                                 "title":data[3],
+                                 "mail":data[4],
+                                 "departmentID":data[5],
+                                 "facultyID":data[6],
+                                 "photoPath":data[7],
+                                 "password":data[8]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def message_id_query(self,msg_id):
+        try:
+            msg_id = str(msg_id)
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[t_message]')
+            dataTable = curs.fetchall()
+            if len(dataTable) == 0:
+                return "NONE"
+            for data in dataTable:
+                if data[0] == msg_id:
+                    dicte = {"id":data[0],
+                             "advisorID":data[1],
+                             "studentID":data[2],
+                             "date":data[3],
+                             "status":data[4],
+                             "message":data[5]}
+                    return dicte
+                else:
+                    return "False"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def student_id_query(self,student_id):
+        try:
+            if student_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[0].split()[0] == student_id:
+                        dicte = {"studentID":data[0],
+                                 "advisorID":data[1],
+                                 "name":data[2],
+                                 "surname":data[3],
+                                 "mail":data[4],
+                                 "phoneNumber":data[5],
+                                 "departmentID":data[6],
+                                 "facultyID":data[7],
+                                 "class":data[8],
+                                 "photoPath":data[9],
+                                 "password":data[10]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def project_id_query(self,project_id):
+        try:
+            if project_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[1] == project_id:
+                        dicte = {"id":data[0],
+                                 "number":data[1],
+                                 "version":data[2],
+                                 "headline":data[3],
+                                 "matter":data[4],
+                                 "[content]":data[5],
+                                 "purpose":data[6],
+                                 "keyword":data[7],
+                                 "materiel":data[8],
+                                 "method":data[9],
+                                 "possibility":data[10],
+                                 "status":data[11],
+                                 "description":data[12],
+                                 "maxPlagiarism":data[13],
+                                 "semesterID":data[14],
+                                 "studentID":data[15],
+                                 "instertionDate":data[16],
+                                 "updateDate":data[17]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def semester_id_query(self,semester_id):
+        try:
+            if semester_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[m_semester]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[0] == int(semester_id):
+                        dicte = {"id":data[0],
+                                 "startDate":data[1],
+                                 "endDate":data[2],
+                                 "name":data[3]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def reports_id_query(self,reports_id):
+        try:
+            if reports_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[t_reports]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[1] == int(reports_id):
+                        dicte = {"id":data[0],
+                                 "projectNumber":data[1],
+                                 "pdfPath":data[2],
+                                 "docPath":data[3],
+                                 "status":data[4],
+                                 "description":data[5],
+                                 "insertionDate":data[6],
+                                 "updateDate":data[7]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def dissertation_id_query(self,dis_id):
+        try:
+            if dis_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[t_Dissertation]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[1] == int(dis_id):
+                        dicte = {"id":data[0],
+                                 "projectNumber":data[1],
+                                 "pdfPath":data[2],
+                                 "docPath":data[3],
+                                 "status":data[4],
+                                 "description":data[5],
+                                 "insertionDate":data[6],
+                                 "updateDate":data[7]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def status_id_query(self,status_id):
+        try:
+            if status_id.isnumeric():
+                curs = self.db.cursor()
+                curs.execute('SELECT * FROM [abdullah_pys].[m_Status]')
+                dataTable = curs.fetchall()
+                for data in dataTable:
+                    if data[0] == int(status_id):
+                        dicte = {"id":data[0],
+                                 "name":data[1],
+                                 "hexColorCode":data[2]}
+                        return dicte
+                return "Bulunamadi"
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def superadmin_id_query(self,admin_id):
+        try:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[4] == admin_id:
+                    dicte = {"id":data[0],
+                             "name":data[1],
+                             "surname":data[2],
+                             "title":data[3],
+                             "mail":data[4],
+                             "password":data[5]}
+                    return dicte
+            return "Bulunamadi"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def login_query(self,no,password):
+        try:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                if data[0].strip() == no and data[10]==password:
+                    count += 1
+                    return "ogrenci"
+
+            curs1 = self.db.cursor()
+            curs1.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
+            dataTable1 = curs1.fetchall()
+            for data in dataTable1:
+                if data[4] == no and data[5]==password:
+                    count += 1
+                    return "superadmin"
+
+            curs2 = self.db.cursor()
+            curs2.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+            dataTable2 = curs2.fetchall()
+            for data in dataTable2:
+                if data[0] == int(no) and data[8]==password:
+                    count += 1
+                    return "advisor"
+            if count == 0:
+                return "Bulunamadi"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def student_project_query(self,student_no):
+        try:
+            curs = self.db.cursor()
+            dicte = {}
+            curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                if data[15].strip() == student_no:
+                    count +=1
+                    dicter = {"id":data[0],
+                                 "number":data[1],
+                                 "version":data[2],
+                                 "headline":data[3],
+                                 "matter":data[4],
+                                 "[content]":data[5],
+                                 "purpose":data[6],
+                                 "keyword":data[7],
+                                 "materiel":data[8],
+                                 "method":data[9],
+                                 "possibility":data[10],
+                                 "status":data[11],
+                                 "description":data[12],
+                                 "maxPlagiarism":data[13],
+                                 "semesterID":data[14],
+                                 "studentID":data[15],
+                                 "instertionDate":data[16],
+                                 "updateDate":data[17]}
+                    dicte.update({count:dicter})
+            return dicte
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def advisor_student_query(self,advisor_no):
+        try:
+            if advisor_no.isnumeric():
+                curs = self.db.cursor()
+                dicte = {}
+                curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+                dataTable = curs.fetchall()
+                count = 0
+                for data in dataTable:
+                    if data[1] == int(advisor_no):
+                        count +=1
+                        dicter = {"studentID":data[0],
+                                     "advisorID":data[1],
+                                     "name":data[2],
+                                     "surname":data[3],
+                                     "mail":data[4],
+                                     "phoneNumber":data[5],
+                                     "departmentID":data[6],
+                                     "facultyID":data[7],
+                                     "class":data[8],
+                                     "photoPath":data[9],
+                                     "password":data[10]}
+                        dicte.update({count:dicter})
+                return dicte
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def proje_plagiarism_query(self,main_projeno):
+        try:
+            if main_projeno.isnumeric():
+                curs = self.db.cursor()
+                dicte = {}
+                curs.execute('SELECT * FROM [abdullah_pys].[t_Plagiarism]')
+                dataTable = curs.fetchall()
+                count = 0
+                for data in dataTable:
+
+                    if data[1] == main_projeno:
+                        count += 1
+                        dicte.update({count : {int(data[2]):int(data[3])}})
+                    if data[2] == main_projeno:
+                        count += 1
+                        dicte.update({count : {int(data[1]):int(data[3])}})
+                return dicte
+            else:
+                return "Variable not int"
+        except Exception as e:
+            e = str(e)
+            return e
+
+# nse = Query()
+# print(nse.message_id_query(2))
+# print(nse.proje_plagiarism_query(1124835))
+# print(nse.advisor_student_query(1))
+# print(nse.student_project_query("111"))
+# print(nse.student_advisor_query("111"))
+# print(nse.login_query("1","paswrd")) # advisor
+# print(nse.login_query("111","aad")) # student
+# print(nse.login_query("pys@abdullahaligun.com","admin")) # super admin
+# print(nse.reports_id_query(0))
+# print(nse.plagiarism_id_query(0))
+# print(nse.semester_id_query(0))
+# print(nse.project_id_query(5))
+# print(nse.message_id_query("1"))
+# print(nse.advisor_id_query(2))
+# print(nse.faculty_id_query("10"))
+# print(nse.department_id_query("10"))
+# print(type(nse.faculty_id_query("10")))
+
+import pyodbc
+import db_query as dbq
+
+class Update:
+    def __init__(self):
+         self.db = pyodbc.connect(
+                            'Driver={ODBC Driver 17 for SQL Server};'
+                            'Server=sql.athena.domainhizmetleri.com;'
+                            'Database=abdullah_pys;'
+                            'UID=abdullah_pys;'
+                            'PWD=@PassWord123;'
+                            )
+    def PasswordChange(self,no,old_pass,new_pass):
+        query = dbq.Query()
+        try:
+            result = query.login_query(no,old_pass)
+            if result == "ogrenci":
+                cursor = self.db.cursor()
+                cursor.execute("UPDATE m_Student SET password = ? WHERE studentID = ? AND password = ?", new_pass, no,old_pass)
+                self.db.commit()
+                return "Successful"
+            elif result == "advisor":
+                cursor = self.db.cursor()
+                cursor.execute("UPDATE m_Advisor SET password = ? WHERE registrationID = ? AND password = ?", new_pass, int(no),old_pass)
+                self.db.commit()
+                return "Successful"
+            elif result == "superadmin":
+                cursor = self.db.cursor()
+                cursor.execute("UPDATE m_superAdmin SET password = ? WHERE mail = ? AND password = ?", new_pass, no,old_pass)
+                self.db.commit()
+                return "Successful"
+            else:
+                return "False"
+        except Exception as e:
+            e = str(e)
+            return e
+
+# nesne = Update()
+# print(nesne.PasswordChange("pys@abdullahaligun.com","admin","yeninew4"))
+
+import pyodbc
+
+class Search:
+    def __init__(self):
+        self.db = pyodbc.connect(
+                            'Driver={ODBC Driver 17 for SQL Server};'
+                            'Server=sql.athena.domainhizmetleri.com;'
+                            'Database=abdullah_pys;'
+                            'UID=abdullah_pys;'
+                            'PWD=@PassWord123;'
+                            )
+        self.intihal = {}
+
+    def headlineSearch(self,projenumber):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+        dataTable = curs.fetchall()
+        dicte = {}
+        for data in dataTable:
+            if data[1] ==projenumber:
+                headline = data[3]
+                for data2 in dataTable:
+                    headline2 = data2[3]
+                    if data2[1] != projenumber:
+                        intihal = self.text_to_text(headline,headline2)
+                        dicte.update({data2[1]:intihal})
+        self.intihal.update({"headline":dicte})
+
+    def matterSearch(self,projenumber):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+        dataTable = curs.fetchall()
+        dicte = {}
+        for data in dataTable:
+            if data[1] ==projenumber:
+                headline = data[4]
+                for data2 in dataTable:
+                    headline2 = data2[4]
+                    if data2[1] != projenumber:
+                        intihal = self.text_to_text(headline,headline2)
+                        dicte.update({data2[1]:intihal})
+        self.intihal.update({"matter":dicte})
+
+    def contentSearch(self,projenumber):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+        dataTable = curs.fetchall()
+        dicte = {}
+        for data in dataTable:
+            if data[1] ==projenumber:
+                headline = data[5]
+                for data2 in dataTable:
+                    headline2 = data2[5]
+                    if data2[1] != projenumber:
+                        intihal = self.text_to_text(headline,headline2)
+                        dicte.update({data2[1]:intihal})
+        self.intihal.update({"content":dicte})
+
+    def purposeSearch(self,projenumber):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+        dataTable = curs.fetchall()
+        dicte = {}
+        for data in dataTable:
+            if data[1] ==projenumber:
+                headline = data[6]
+                for data2 in dataTable:
+                    headline2 = data2[6]
+                    if data2[1] != projenumber:
+                        intihal = self.text_to_text(headline,headline2)
+                        dicte.update({data2[1]:intihal})
+        self.intihal.update({"purpose":dicte})
+
+    def text_to_text(self,text1,text2):
+        benzer_kelime_sayisi = 0
+        text1 = text1.split()
+        text2 = text2.split()
+        toplam_kelime_sayisi = len(text1) + len(text2)
+        for mt1 in text1:
+            for mt2 in text2:
+                if mt1 == mt2 and len(mt1) > 2 and len(mt2) > 2 :
+                    benzer_kelime_sayisi += 1
+        yuzde = round(benzer_kelime_sayisi/toplam_kelime_sayisi*100,2)
+        return yuzde
+
+    def allin(self,projenumber):
+        self.matterSearch(projenumber)
+        self.headlineSearch(projenumber)
+        self.contentSearch(projenumber)
+        self.purposeSearch(projenumber)
+        matter = self.intihal["matter"]
+        content = self.intihal["content"]
+        purpose = self.intihal["purpose"]
+        headline = self.intihal["headline"]
+        for i in matter:
+            genel_toplam = 0
+            genel_toplam += matter[i]
+            genel_toplam += content[i]
+            genel_toplam += purpose[i]
+            genel_toplam += headline[i]
+            genel_ort = int(genel_toplam/4)
+            self.plagiarism_insert(int(projenumber),i,genel_ort)
+            print("allin succes")
+            # print("Main : {0} - Other : {1} - İntihal : {2}".format(projenumber,i,genel_ort))
+
+    def plagiarism_insert(self,mainprojeid,otherprojeid,plagrismrate):
+        try:
+            curs = self.db.cursor()
+            curs.execute("insert into t_Plagiarism(mainProjeID,otherProjeID,plagiarismRate) values (?,?,?)",
+                         mainprojeid,
+                         otherprojeid,
+                         plagrismrate)
+            curs.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
+
+
+
+# nesne = Search()
+# nesne.allin("1114738")
+
+import pyodbc
+
+
+class TableControl:
+    def __init__(self):
+        self.db = pyodbc.connect(
+                            'Driver={ODBC Driver 17 for SQL Server};'
+                            'Server=sql.athena.domainhizmetleri.com;'
+                            'Database=abdullah_pys;'
+                            'UID=abdullah_pys;'
+                            'PWD=@PassWord123;'
+                            )
+    def faculty_id_control(self,faculty_id):
+        if len(faculty_id) < 2:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Faculty]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[0] == faculty_id:
+                    return True
+            return False
+        else:
+            return False
+
+    def department_id_control(self,department_id):
+        if len(department_id) < 4:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Department]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[0] == department_id:
+                    return True
+            return False
+        else:
+            return False
+
+    def student_id_control(self,student_id):
+
+        if len(student_id) < 9:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[0].split()[0] == student_id:
+                    return False
+            return True
+        else:
+            return False
+
+    def advisor_reg_control(self,reg_id):
+
+        if type(reg_id) == int:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+            dataTable = curs.fetchall()
+            for data in dataTable:
+                if data[0] == reg_id:
+                    return False
+            return True
+        else:
+            return False
+# tableControl = TableControl()
+# print(tableControl.faculty_id_control("2"))
+# print(tableControl.student_id_control("111"))
+# print(tableControl.department_id_control("10"))
