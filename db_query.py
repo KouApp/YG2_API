@@ -407,13 +407,27 @@ class Query:
                           "enddate":data[2],
                           "name":data[3]}
                 return dicter
-
-
         except Exception as e:
             e = str(e)
             return e
 
-# nse = Query()
+    def project_count_query(self,project_number):
+        try:
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[t_reports]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                if int(data[1]) == int(project_number) and int(data[4]) == 4:
+                    count +=1
+            count_str = str(count)
+            return str(count_str)
+        except Exception as e:
+            e = str(e)
+            return e
+
+nse = Query()
+print(nse.project_count_query("1119881"))
 # print(nse.semester_date_query())
 # print(nse.message_id_query(2))
 # print(nse.proje_plagiarism_query(1124835))

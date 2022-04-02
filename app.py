@@ -307,5 +307,13 @@ def semesterDateQuery():
 	result = que.semester_date_query()
 	return result
 
+@app.route('/projectCounterQuery',methods=['POST'])
+def projectCounterQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	projectNumber = request.form['proje_number']
+	que = db_query.Query()
+	result = que.project_count_query(projectNumber)
+	return result
+
 if __name__ == '__main__':
 	app.run()
