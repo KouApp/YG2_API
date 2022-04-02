@@ -106,12 +106,12 @@ class Tester:
         for data in dataTable:
             print("reports Data ### ",data)
 
-# testing = Tester()
+testing = Tester()
 # testing.faculty_list()
 # testing.department_list()
-# testing.student_list()
-# testing.advisor_list()
-# testing.message_list()
+testing.student_list()
+testing.advisor_list()
+testing.message_list()
 # testing.status_list()
 # testing.projects_list()
 # testing.semester_list()

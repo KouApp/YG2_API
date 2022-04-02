@@ -300,5 +300,12 @@ def passwordChange():
 	result = update.PasswordChange(no,old_password,new_password)
 	return result
 
+@app.route('/semesterDateQuery',methods=['POST'])
+def semesterDateQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	que = db_query.Query()
+	result = que.semester_date_query()
+	return result
+
 if __name__ == '__main__':
 	app.run()

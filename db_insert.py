@@ -145,14 +145,11 @@ class Database_insert:
     def messsage_insert(self,advisor_id,student_id,status,message):
         table_c = tableControl.TableControl()
         date = datetime.datetime.now()
+        status = int(status)
         if table_c.advisor_reg_control(advisor_id):
             return "Error code : 26"
         if table_c.student_id_control(student_id):
             return "Error code : 27"
-        if not type(status) == int:
-            return "Error code : 28"
-        if not type(message) == str:
-            return "Error code : 29"
         try:
             curs = self.db.cursor()
             curs.execute("insert into t_message(advisorID,studentID,date,status,message) values (?,?,?,?,?)",
@@ -265,23 +262,3 @@ class Database_insert:
             return e
 
 
-
-# nesne = Database_insert()
-# print(nesne.messsage_insert(1,"111",0,"Test"))
-#
-# print(nesne.projects_insert(0,
-#                             "test headline headline",
-#                             "test test test",
-#                             "test content nasılsın",
-#                             "test purpose naber",
-#                             "test keywords",
-#                             "test metariel",
-#                             "test method",
-#                             "test poss",
-#                             0,
-#                             "test description",
-#                             "0000000000",
-#                             0,
-#                             "114",
-#                             "2022-03-30 14:29:39",
-#                             "2022-03-30 14:29:39"))

@@ -1,3 +1,5 @@
+import datetime
+
 import pyodbc
 
 class Query:
@@ -272,7 +274,7 @@ class Query:
             for data in dataTable:
                 if data[0].strip() == no and data[10]==password:
                     count += 1
-                    return "ogrenci"
+                    return "student"
 
             curs1 = self.db.cursor()
             curs1.execute('SELECT * FROM [abdullah_pys].[m_superAdmin]')
@@ -280,7 +282,7 @@ class Query:
             for data in dataTable1:
                 if data[4] == no and data[5]==password:
                     count += 1
-                    return "superadmin"
+                    return "admin"
 
             curs2 = self.db.cursor()
             curs2.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
@@ -382,7 +384,37 @@ class Query:
             e = str(e)
             return e
 
+    def semester_date_query(self):
+        try:
+            date = datetime.datetime.now()
+            curs = self.db.cursor()
+            dicte = {}
+            curs.execute('SELECT * FROM [abdullah_pys].[m_semester]')
+            dataTable = curs.fetchall()
+            control =True
+            for data in dataTable:
+                if data[1] < date and data[2] > date:
+                    control = False
+                    dicte.update({"id" : data[0],
+                                  "startdate":data[1],
+                                  "enddate":data[2],
+                                  "name":data[3]})
+                    return dicte
+            if control:
+                data = dataTable[len(dataTable)-1]
+                dicter = {"id" : data[0],
+                          "startdate":data[1],
+                          "enddate":data[2],
+                          "name":data[3]}
+                return dicter
+
+
+        except Exception as e:
+            e = str(e)
+            return e
+
 # nse = Query()
+# print(nse.semester_date_query())
 # print(nse.message_id_query(2))
 # print(nse.proje_plagiarism_query(1124835))
 # print(nse.advisor_student_query(1))
