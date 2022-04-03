@@ -230,7 +230,9 @@ class Database_insert:
             e = str(e)
             return e
 
-    def projects_insert(self,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate):
+    def projects_insert(self,version,headline,matter,cont,purpose,keyword,
+                        metariel,method,poss,status,descr,maxplag,semeterid,
+                        studentid,insertiondate,updatedate):
         try:
             deg = random.randint(1000,9999)
             number = str(studentid[:8]) + str(deg)
