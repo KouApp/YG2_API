@@ -188,7 +188,7 @@ class Database_insert:
         try:
             curs = self.db.cursor()
             curs.execute(
-                "insert into t_reports(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?,?)",
+                "insert into t_reports(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?)",
                 id,
                 projenumber,
                 pdfpath,
