@@ -327,5 +327,17 @@ def projectStatusUpdate():
 	result = update.projectStatusUpdate(projectNumber,new_status,old_status,description,date)
 	return result
 
+@app.route('/reportsStatusUpdate',methods=['POST'])
+def reportsStatusUpdate():
+	print('[INFO]--[test]--[FUNCTION]')
+	projectNumber = request.form['proje_number']
+	new_status = request.form['new_status']
+	old_status = request.form['old_status']
+	description = request.form['description']
+	date = request.form['date']
+	update = db_update.Update()
+	result = update.reportsStatusUpdate(projectNumber,new_status,old_status,description,date)
+	return result
+
 if __name__ == '__main__':
 	app.run()
