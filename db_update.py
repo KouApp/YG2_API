@@ -68,6 +68,16 @@ class Update:
             e = str(e)
             return e
 
+    def projectNewPlagiarismUpdate(self,proje_no,plag):
+        try:
+            cursor = self.db.cursor()
+            cursor.execute("UPDATE t_Projects SET maxPlagiarism = ? WHERE projectNumber = ? ", plag,proje_no)
+            self.db.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
 # nesne = Update()
 # date = datetime.datetime.now()
 # print(nesne.projectStatusUpdate("1124835",3,1,"yeni update",date))

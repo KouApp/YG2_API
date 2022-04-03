@@ -101,6 +101,7 @@ class Search:
             genel_ort = int(genel_toplam/4)
             self.plagiarism_insert(int(projenumber),i,genel_ort)
             ups = dbup.Update()
+            ups.projectNewPlagiarismUpdate(projenumber,genel_ort)
             if genel_ort > 30:
                 ups.projectPlagiarismUpdate(projenumber)
 
