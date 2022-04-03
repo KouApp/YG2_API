@@ -1,7 +1,9 @@
 import pyodbc
 import db_query as dbq
+import datetime
 
 class Update:
+
     def __init__(self):
          self.db = pyodbc.connect(
                             'Driver={ODBC Driver 17 for SQL Server};'
@@ -35,5 +37,18 @@ class Update:
             e = str(e)
             return e
 
+    def projectStatusUpdate(self,proje_no,new_status,old_status,desc,date):
+        try:
+
+            cursor = self.db.cursor()
+            cursor.execute("UPDATE t_reports SET status = ?,description = ?, updatedDate = ? WHERE projectNumber = ? AND status = ?", int(new_status), desc,date,proje_no,int(old_status))
+            self.db.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
 # nesne = Update()
+# date = datetime.datetime.now()
+# print(nesne.projectStatusUpdate("1119885",3,0,"yeni update",date))
 # print(nesne.PasswordChange("pys@abdullahaligun.com","admin","yeninew4"))

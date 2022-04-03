@@ -315,5 +315,17 @@ def projectCounterQuery():
 	result = que.project_count_query(projectNumber)
 	return result
 
+@app.route('/projectStatusUpdate',methods=['POST'])
+def projectStatusUpdate():
+	print('[INFO]--[test]--[FUNCTION]')
+	projectNumber = request.form['proje_number']
+	new_status = request.form['new_status']
+	old_status = request.form['old_status']
+	description = request.form['description']
+	date = request.form['date']
+	update = db_update.Update()
+	result = update.projectStatusUpdate(projectNumber,new_status,old_status,description,date)
+	return result
+
 if __name__ == '__main__':
 	app.run()

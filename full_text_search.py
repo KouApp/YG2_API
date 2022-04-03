@@ -78,7 +78,7 @@ class Search:
         toplam_kelime_sayisi = len(text1) + len(text2)
         for mt1 in text1:
             for mt2 in text2:
-                if mt1 == mt2 and len(mt1) > 2 and len(mt2) > 2 :
+                if mt1 == mt2 and len(mt1) > 2 and len(mt2) > 2:
                     benzer_kelime_sayisi += 1
         yuzde = round(benzer_kelime_sayisi/toplam_kelime_sayisi*100,2)
         return yuzde

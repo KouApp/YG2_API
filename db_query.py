@@ -426,8 +426,8 @@ class Query:
             e = str(e)
             return e
 
-nse = Query()
-print(nse.project_count_query("1119881"))
+# nse = Query()
+# print(nse.project_count_query("1119881"))
 # print(nse.semester_date_query())
 # print(nse.message_id_query(2))
 # print(nse.proje_plagiarism_query(1124835))
