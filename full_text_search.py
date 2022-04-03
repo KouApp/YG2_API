@@ -1,5 +1,5 @@
 import pyodbc
-
+import db_update as dbup
 class Search:
     def __init__(self):
         self.db = pyodbc.connect(
@@ -100,8 +100,10 @@ class Search:
             genel_toplam += headline[i]
             genel_ort = int(genel_toplam/4)
             self.plagiarism_insert(int(projenumber),i,genel_ort)
-            print("allin succes")
-            # print("Main : {0} - Other : {1} - İntihal : {2}".format(projenumber,i,genel_ort))
+            ups = dbup.Update()
+            if genel_ort > 30:
+                ups.projectPlagiarismUpdate(projenumber)
+
 
     def plagiarism_insert(self,mainprojeid,otherprojeid,plagrismrate):
         try:
