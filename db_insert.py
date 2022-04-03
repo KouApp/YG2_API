@@ -230,14 +230,15 @@ class Database_insert:
             e = str(e)
             return e
 
-    def projects_insert(self,version,headline,matter,cont,purpose,keyword,
-                        metariel,method,poss,status,descr,maxplag,semeterid,
+    def projects_insert(self,headline,matter,cont,purpose,keyword,
+                        metariel,method,poss,status,descr,semeterid,
                         studentid,insertiondate,updatedate):
         try:
+            version = 1
             deg = random.randint(1000,9999)
             number = str(studentid[:8]) + str(deg)
             curs = self.db.cursor()
-            curs.execute("insert into t_Projects(number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,maxPlagiarism,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            curs.execute("insert into t_Projects(number,version,headline,matter,[content],purpose,keyword,materiel,method,possibility,status,description,semesterID,studentID,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                             number,
                             version,
                             headline,
@@ -250,7 +251,6 @@ class Database_insert:
                              poss,
                              status,
                              descr,
-                             maxplag,
                              semeterid,
                              studentid,
                              insertiondate,

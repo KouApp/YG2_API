@@ -61,7 +61,7 @@ class Update:
     def projectPlagiarismUpdate(self,proje_no):
         try:
             cursor = self.db.cursor()
-            cursor.execute("UPDATE t_Projects SET status = ?,description = ? WHERE projectNumber = ? ", 5, "İntihal tespit edildi",proje_no)
+            cursor.execute("UPDATE t_Projects SET status = ?,description = ? WHERE number = ? ", 5, "İntihal tespit edildi",proje_no)
             self.db.commit()
             return "Successful"
         except Exception as e:
@@ -71,7 +71,7 @@ class Update:
     def projectNewPlagiarismUpdate(self,proje_no,plag):
         try:
             cursor = self.db.cursor()
-            cursor.execute("UPDATE t_Projects SET maxPlagiarism = ? WHERE projectNumber = ? ", plag,proje_no)
+            cursor.execute("UPDATE t_Projects SET maxPlagiarism = ? WHERE number = ? ", plag,proje_no)
             self.db.commit()
             return "Successful"
         except Exception as e:
@@ -79,6 +79,7 @@ class Update:
             return e
 
 # nesne = Update()
+# print(nesne.projectNewPlagiarismUpdate("1119416",14))
 # date = datetime.datetime.now()
 # print(nesne.projectStatusUpdate("1124835",3,1,"yeni update",date))
 # print(nesne.PasswordChange("pys@abdullahaligun.com","admin","yeninew4"))

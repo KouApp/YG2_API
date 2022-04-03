@@ -147,7 +147,6 @@ def semesterInsert():
 @app.route('/projectsInsert',methods=['POST'])
 def projectsInsert():
 	print('[INFO]--[test]--[FUNCTION]')
-	version = request.form['version']
 	headline = request.form['headline']
 	matter = request.form['matter']
 	cont = request.form['cont']
@@ -158,16 +157,14 @@ def projectsInsert():
 	poss = request.form['poss']
 	status = request.form['status']
 	descr = request.form['descr']
-	maxplag = request.form['maxplag']
 	semeterid = request.form['semeterid']
 	studentid = request.form['studentid']
 	insertiondate = request.form['insertiondate']
 	updatedate = request.form['updatedate']
 	insert = db_insert.Database_insert()
-	result = insert.projects_insert(version,
-									headline,matter,cont,
+	result = insert.projects_insert(headline,matter,cont,
 									purpose,keyword,metariel,
-									method,poss,status,descr,maxplag,
+									method,poss,status,descr,
 									semeterid,studentid,insertiondate,updatedate)
 	return result
 
