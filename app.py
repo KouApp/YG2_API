@@ -96,7 +96,6 @@ def dissertationInsert():
 	result = insert.dissertation_insert(projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
 	return result
 
-# id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate
 @app.route('/reportsInsert',methods=['POST'])
 def reportsInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -111,7 +110,6 @@ def reportsInsert():
 	result = insert.reports_insert(projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
 	return result
 
-# id,mainprojeid,otherprojeid,plagrismrate
 @app.route('/plagiarismInsert',methods=['POST'])
 def plagiarismInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -123,7 +121,6 @@ def plagiarismInsert():
 	result = insert.plagiarism_insert(id,mainprojeid,otherprojeid)
 	return result
 
-# id,startdate,enddate,name
 @app.route('/semesterInsert',methods=['POST'])
 def semesterInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -134,7 +131,6 @@ def semesterInsert():
 	result = insert.semester_insert(startdate,enddate,name)
 	return result
 
-# projects_insert  id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate
 @app.route('/projectsInsert',methods=['POST'])
 def projectsInsert():
 	print('[INFO]--[test]--[FUNCTION]')

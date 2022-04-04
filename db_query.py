@@ -185,7 +185,10 @@ class Query:
                 curs = self.db.cursor()
                 curs.execute('SELECT * FROM [abdullah_pys].[t_reports]')
                 dataTable = curs.fetchall()
+                dicter = {}
+                count = 0
                 for data in dataTable:
+                    count += 1
                     if data[1] == reports_id:
                         dicte = {"id":data[0],
                                  "projectNumber":data[1],
@@ -195,8 +198,8 @@ class Query:
                                  "description":data[5],
                                  "insertionDate":data[6],
                                  "updateDate":data[7]}
-                        return dicte
-                return "Bulunamadi"
+                        dicter.update({count:dicte})
+                return dicter
             else:
                 return "Variable not int"
         except Exception as e:

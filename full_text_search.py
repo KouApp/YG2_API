@@ -80,6 +80,7 @@ class Search:
             for mt2 in text2:
                 if mt1 == mt2 and len(mt1) > 2 and len(mt2) > 2:
                     benzer_kelime_sayisi += 1
+                    break
         yuzde = round(benzer_kelime_sayisi/toplam_kelime_sayisi*100,2)
         return yuzde
 
