@@ -3,6 +3,8 @@ import table_control as tableControl
 import datetime
 import full_text_search as fullSearch
 import random
+from openpyxl import Workbook,load_workbook
+import base64
 
 class Database_insert:
 
@@ -104,30 +106,10 @@ class Database_insert:
         else:
             return "Error code : 14"
 
-    def advisor_insert(self,reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password):
-        table_c = tableControl.TableControl()
-        if not table_c.advisor_reg_control(reg_id):
-            return "Error code : 17"
-        if not len(name) < 105:
-            return "Error code : 18"
-        if not len(surname) < 50:
-            return "Error code : 19"
-        if not len(mail) < 255:
-            return "Error code : 20"
-        if not len(title) < 30:
-            return "Error code : 21"
-        if not table_c.department_id_control(depart_id):
-            return "Error code : 22"
-        if not table_c.faculty_id_control(faculty_id):
-            return "Error code : 23"
-        if not type(photo_path) == str:
-            return "Error code : 24"
-        if not len(password) < 255:
-            return "Error code : 25"
+    def advisor_insert(self,name,surname,title,mail,depart_id,faculty_id,photo_path,password):
         try:
             curs = self.db.cursor()
-            curs.execute("insert into m_Advisor(registrationID,name,surname,title,mail,departmentID,facultyID,photoPath,password) values (?,?,?,?,?,?,?,?,?)",
-                str(reg_id),
+            curs.execute("insert into m_Advisor(name,surname,title,mail,departmentID,facultyID,photoPath,password) values (?,?,?,?,?,?,?,?)",
                 str(name),
                 str(surname),
                 str(title),
@@ -264,3 +246,53 @@ class Database_insert:
             return e
 
 
+
+    def advisor_xlsx_insert(self):
+        encode = ""
+        with open("documantation/test.xlsx", "rb") as fileOpen:
+            encode64 = base64.b64encode(fileOpen.read())
+            encode = encode64
+
+        with open("documantation/advisorbase64.txt", "w") as fileOpen:
+            fileOpen.write(str(encode))
+
+
+
+    def advisor_xlsx_add(self,rowCount):
+        kisiler = []
+        try:
+            wb = load_workbook("excel/advisor.xlsx")
+            ws = wb.active
+            for i in range(2,rowCount+1):
+                name = ws["B"+str(i)].value
+                surname = ws["C"+str(i)].value
+                title = ws["D"+str(i)].value
+                mail = ws["E"+str(i)].value
+                depart = ws["F"+str(i)].value
+                faculty = ws["G"+str(i)].value
+                photo = ws["H"+str(i)].value
+                passwd = ws["I"+str(i)].value
+                kisiler.append([name,surname,title,mail,depart,faculty,photo,passwd])
+            return kisiler
+        except Exception as e:
+            e = str(e)
+            return e
+
+    def adv_list_import(self,Rcount,base):
+        try:
+            with open("excel/advisor.xlsx", "wb") as fileOpen:
+                decode64 = base64.b64decode(base)
+                fileOpen.write(decode64)
+            listem = self.advisor_xlsx_add(int(Rcount))
+            if type(listem) == list:
+                for a in listem:
+                    self.advisor_insert(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7])
+                return "suc"
+        except Exception as e:
+            e = str(e)
+            return e
+
+# nesne = Database_insert()
+
+# wb = load_workbook("documantation/advisor.xlsx")
+# ws = wb.active

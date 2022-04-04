@@ -377,5 +377,14 @@ def semesterListQuery():
 	result = que.semesterListQuery()
 	return result
 
+@app.route('/advisorimportQuery',methods=['POST'])
+def advisorimportQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	row = request.form['rowcount']
+	base = request.form['base64']
+	ins = db_insert.Database_insert()
+	result = ins.adv_list_import(row,base)
+	return result
+
 if __name__ == '__main__':
 	app.run()

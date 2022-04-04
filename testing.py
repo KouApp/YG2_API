@@ -106,16 +106,22 @@ class Tester:
         for data in dataTable:
             print("reports Data ### ",data)
 
+    def advisorDelete(self):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        curs = self.db.cursor()
+        curs.execute('DELETE FROM [abdullah_pys].[m_Advisor]')
+
 testing = Tester()
 # testing.faculty_list()
 # testing.department_list()
 # testing.student_list()
-# testing.advisor_list()
+testing.advisor_list()
+# testing.advisorDelete()
 # testing.message_list()
 # testing.status_list()
 # testing.projects_list()
 # testing.semester_list()
-testing.dissertation_list()
+# testing.dissertation_list()
 # testing.plagriasim_list()
 # testing.superadmin_list()
 # testing.reports_list()
