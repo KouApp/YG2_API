@@ -78,7 +78,20 @@ class Update:
             e = str(e)
             return e
 
+    def dissertationStatusUpdate(self,proje_no,old_status,new_status,desc):
+        try:
+            date = datetime.datetime.now()
+            cursor = self.db.cursor()
+            cursor.execute("UPDATE t_Dissertation SET status = ?,description=?,updatedDate=? WHERE projectNumber = ? AND status = ? ",
+                           new_status,desc,date,proje_no,old_status)
+            self.db.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
 # nesne = Update()
+# print(nesne.dissertationStatusUpdate("1119881",0,2,"yeni acıklama"))
 # print(nesne.projectNewPlagiarismUpdate("1119416",14))
 # date = datetime.datetime.now()
 # print(nesne.projectStatusUpdate("1124835",3,1,"yeni update",date))
