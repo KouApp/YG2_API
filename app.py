@@ -128,19 +128,18 @@ def plagiarismInsert():
 	otherprojeid = request.form['otherprojeid']
 	plagrismrate = request.form['plagrismrate']
 	insert = db_insert.Database_insert()
-	result = insert.plagiarism_insert(id,mainprojeid,otherprojeid,plagrismrate)
+	result = insert.plagiarism_insert(id,mainprojeid,otherprojeid)
 	return result
 
 # id,startdate,enddate,name
 @app.route('/semesterInsert',methods=['POST'])
 def semesterInsert():
 	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
 	startdate = request.form['startdate']
 	enddate = request.form['enddate']
 	name = request.form['name']
 	insert = db_insert.Database_insert()
-	result = insert.semester_insert(id,startdate,enddate,name)
+	result = insert.semester_insert(startdate,enddate,name)
 	return result
 
 # projects_insert  id,number,version,headline,matter,cont,purpose,keyword,metariel,method,poss,status,descr,maxplag,semeterid,studentid,insertiondate,updatedate

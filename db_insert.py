@@ -177,11 +177,10 @@ class Database_insert:
             e = str(e)
             return e
 
-    def semester_insert(self,id,startdate,enddate,name):
+    def semester_insert(self,startdate,enddate,name):
         try:
             curs = self.db.cursor()
-            curs.execute("insert into m_semester(id,startDate,endDate,name) values (?,?,?,?)",
-                         id,
+            curs.execute("insert into m_semester(startDate,endDate,name) values (?,?,?)",
                          startdate,
                          enddate,
                          name)
