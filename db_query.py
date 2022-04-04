@@ -508,8 +508,27 @@ class Query:
             e = str(e)
             return e
 
+    def semesterListQuery(self):
+        try:
+            dicte = {}
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_semester]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                count += 1
+                data = {"id":data[0],
+                        "startDate":data[1],
+                        "endDate":data[2],
+                        "name":data[3]}
+                dicte.update({count:data})
+            return dicte
+        except Exception as e:
+            e = str(e)
+            return e
 
 # nse = Query()
+# print(nse.semesterListQuery())
 # print(nse.projectListQuery())
 # print(nse.studentListQuery())
 # print(nse.advisor_query())

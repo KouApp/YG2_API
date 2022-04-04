@@ -370,5 +370,12 @@ def projectListQuery():
 	result = que.projectListQuery()
 	return result
 
+@app.route('/semesterListQuery',methods=['POST'])
+def semesterListQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	que = db_query.Query()
+	result = que.semesterListQuery()
+	return result
+
 if __name__ == '__main__':
 	app.run()
