@@ -186,7 +186,7 @@ class Query:
                 curs.execute('SELECT * FROM [abdullah_pys].[t_reports]')
                 dataTable = curs.fetchall()
                 for data in dataTable:
-                    if data[1] == int(reports_id):
+                    if data[1] == reports_id:
                         dicte = {"id":data[0],
                                  "projectNumber":data[1],
                                  "pdfPath":data[2],
@@ -526,6 +526,8 @@ class Query:
         except Exception as e:
             e = str(e)
             return e
+
+
 
 # nse = Query()
 # print(nse.semesterListQuery())
