@@ -125,13 +125,12 @@ class Database_insert:
             e = str(e)
             return e
 
-    def dissertation_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
+    def dissertation_insert(self,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
 
         try:
             curs = self.db.cursor()
             curs.execute(
-                "insert into t_Dissertation(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?,?)",
-                id,
+                "insert into t_Dissertation(projectNumber,pdfPath,docPath,status,description,insertionDate,updateDate) values (?,?,?,?,?,?,?)",
                 projenumber,
                 pdfpath,
                 docpath,
@@ -145,12 +144,11 @@ class Database_insert:
             e = str(e)
             return e
 
-    def reports_insert(self,id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
+    def reports_insert(self,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate):
         try:
             curs = self.db.cursor()
             curs.execute(
-                "insert into t_reports(id,projectNumber,pdfPath,docPath,status,description,insertionDate,updatedDate) values (?,?,?,?,?,?,?,?)",
-                id,
+                "insert into t_reports(projectNumber,pdfPath,docPath,status,description,insertionDate,updatedDate) values (?,?,?,?,?,?,?)",
                 projenumber,
                 pdfpath,
                 docpath,

@@ -18,7 +18,6 @@ def test():
 	response = quer.faculty_id_query(faculty_id)
 	return response
 
-#student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password
 @app.route('/studentInsert',methods=['POST'])
 def studentInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -37,7 +36,6 @@ def studentInsert():
 	result = insert.student_insert(student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password)
 	return result
 
-# faculty_id,name
 @app.route('/facultyInsert',methods=['POST'])
 def facultyInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -47,7 +45,6 @@ def facultyInsert():
 	result = insert.faculty_insert(faculty_id,name)
 	return result
 
-# depart_id,faculty_id,name
 @app.route('/departmentInsert',methods=['POST'])
 def departmentInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -58,7 +55,6 @@ def departmentInsert():
 	result = insert.department_insert(depart_id,faculty_id,name)
 	return result
 
-# reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password
 @app.route('/advisorInsert',methods=['POST'])
 def advisorInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -75,7 +71,6 @@ def advisorInsert():
 	result = insert.advisor_insert(reg_id,name,surname,title,mail,depart_id,faculty_id,photo_path,password)
 	return result
 
-# advisor_id,student_id,status,message
 @app.route('/messageInsert',methods=['POST'])
 def messageInsert():
 	print('[INFO]--[test]--[FUNCTION]')
@@ -87,11 +82,9 @@ def messageInsert():
 	result = insert.messsage_insert(advisor_id,student_id,status,message)
 	return result
 
-# id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate
 @app.route('/dissertationInsert',methods=['POST'])
 def dissertationInsert():
 	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
 	projenumber = request.form['projenumber']
 	pdfpath = request.form['pdfpath']
 	docpath = request.form['docpath']
@@ -100,14 +93,13 @@ def dissertationInsert():
 	insertdate = request.form['insertdate']
 	updatedate = request.form['updatedate']
 	insert = db_insert.Database_insert()
-	result = insert.dissertation_insert(id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
+	result = insert.dissertation_insert(projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
 	return result
 
 # id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate
 @app.route('/reportsInsert',methods=['POST'])
 def reportsInsert():
 	print('[INFO]--[test]--[FUNCTION]')
-	id = request.form['id']
 	projenumber = request.form['projenumber']
 	pdfpath = request.form['pdfpath']
 	docpath = request.form['docpath']
@@ -116,7 +108,7 @@ def reportsInsert():
 	insertdate = request.form['insertdate']
 	updatedate = request.form['updatedate']
 	insert = db_insert.Database_insert()
-	result = insert.reports_insert(id,projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
+	result = insert.reports_insert(projenumber,pdfpath,docpath,status,desc,insertdate,updatedate)
 	return result
 
 # id,mainprojeid,otherprojeid,plagrismrate

@@ -25,21 +25,6 @@ from smtplib import SMTP
 # mail.login("info.kouai@gmail.com","")
 # mail.sendmail("info.kouai@gmail.com","hacklojen01@gmail.com",content)
 
-from openpyxl import Workbook,load_workbook
+import datetime
 
-wb = load_workbook("documantation/test.xlsx")
-ws = wb.active
-satir = 5
-for i in range(2,satir+1):
-    registid = ws["A"+str(i)].value
-    name = ws["B"+str(i)].value
-    surname = ws["C"+str(i)].value
-    title = ws["D"+str(i)].value
-    mail = ws["E"+str(i)].value
-    depart = ws["F"+str(i)].value
-    faculty = ws["G"+str(i)].value
-    photo = ws["H"+str(i)].value
-    passwd = ws["I"+str(i)].value
-    print(str(registid) + name + surname + title + mail + str(depart) + str(faculty) + photo + passwd)
-
-
+print(datetime.datetime.now())

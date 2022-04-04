@@ -18,17 +18,17 @@ class Update:
             result = query.login_query(no,old_pass)
             if result == "student":
                 cursor = self.db.cursor()
-                cursor.execute("UPDATE m_Student SET password = ? WHERE studentID = ? AND password = ?", new_pass, no,old_pass)
+                cursor.execute("UPDATE m_Student SET password = ? WHERE studentID = ? AND password = ?", no, no,old_pass)
                 self.db.commit()
                 return "Successful"
             elif result == "advisor":
                 cursor = self.db.cursor()
-                cursor.execute("UPDATE m_Advisor SET password = ? WHERE registrationID = ? AND password = ?", new_pass, int(no),old_pass)
+                cursor.execute("UPDATE m_Advisor SET password = ? WHERE registrationID = ? AND password = ?", no, int(no),old_pass)
                 self.db.commit()
                 return "Successful"
             elif result == "admin":
                 cursor = self.db.cursor()
-                cursor.execute("UPDATE m_superAdmin SET password = ? WHERE mail = ? AND password = ?", new_pass, no,old_pass)
+                cursor.execute("UPDATE m_superAdmin SET password = ? WHERE mail = ? AND password = ?", no, no,old_pass)
                 self.db.commit()
                 return "Successful"
             else:
