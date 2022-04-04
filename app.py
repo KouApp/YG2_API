@@ -377,13 +377,22 @@ def semesterListQuery():
 	result = que.semesterListQuery()
 	return result
 
-@app.route('/advisorimportQuery',methods=['POST'])
-def advisorimportQuery():
+@app.route('/advisorimport',methods=['POST'])
+def advisorimport():
 	print('[INFO]--[test]--[FUNCTION]')
 	row = request.form['rowcount']
 	base = request.form['base64']
 	ins = db_insert.Database_insert()
 	result = ins.adv_list_import(row,base)
+	return result
+
+@app.route('/studentimport',methods=['POST'])
+def studentimport():
+	print('[INFO]--[test]--[FUNCTION]')
+	row = request.form['rowcount']
+	base = request.form['base64']
+	ins = db_insert.Database_insert()
+	result = ins.student_list_import(row,base)
 	return result
 
 if __name__ == '__main__':

@@ -23,30 +23,9 @@ class Database_insert:
         for i in kullanicilar:
             print(i)
 
-    def student_insert(self,student_id,advisior_id,name,surname,mail,phone_no,depart_id,faculty_id,clas,photo_path,password):
-        table_c = tableControl.TableControl()
-        if not table_c.student_id_control(student_id):
-            return "Error code : 1"
-        if not type(advisior_id) == int:
-            return "Error code : 2"
-        if not len(name) < 105:
-            return "Error code : 3"
-        if not len(surname) < 55:
-            return "Error code : 4"
-        if not len(mail) < 255:
-            return "Error code : 5"
-        if not len(phone_no) < 255:
-            return "Error code : 6"
-        if not table_c.department_id_control(depart_id):
-            return "Error code : 7"
-        if not table_c.faculty_id_control(faculty_id):
-            return "Error code : 8"
-        if not len(clas) < 8:
-            return "Error code : 9"
-        if not type(photo_path) == str:
-            return "Error code : 10"
-        if not len(password) < 255:
-            return "Error code : 11"
+    def student_insert(self,student_id,advisior_id,name,surname,mail,
+                       phone_no,depart_id,faculty_id,clas,photo_path,password):
+
         try:
             curs = self.db.cursor()
             curs.execute(
@@ -245,19 +224,6 @@ class Database_insert:
             e = str(e)
             return e
 
-
-
-    def advisor_xlsx_insert(self):
-        encode = ""
-        with open("documantation/test.xlsx", "rb") as fileOpen:
-            encode64 = base64.b64encode(fileOpen.read())
-            encode = encode64
-
-        with open("documantation/advisorbase64.txt", "w") as fileOpen:
-            fileOpen.write(str(encode))
-
-
-
     def advisor_xlsx_add(self,rowCount):
         kisiler = []
         try:
@@ -287,12 +253,49 @@ class Database_insert:
             if type(listem) == list:
                 for a in listem:
                     self.advisor_insert(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7])
-                return "suc"
+                return "Successful"
         except Exception as e:
             e = str(e)
             return e
 
-# nesne = Database_insert()
+    def student_xlsx_add(self,rowCount):
+        kisiler = []
+        try:
+            wb = load_workbook("excel/student.xlsx")
+            ws = wb.active
+            for i in range(2,rowCount+1):
+                studentid = ws["A"+str(i)].value
+                advisorid = ws["B"+str(i)].value
+                name = ws["C"+str(i)].value
+                surname = ws["D"+str(i)].value
+                mail = ws["E"+str(i)].value
+                phone = ws["F"+str(i)].value
+                depart = ws["G"+str(i)].value
+                faculty = ws["H"+str(i)].value
+                clas = ws["I"+str(i)].value
+                photopath = ws["J"+str(i)].value
+                passw = ws["K"+str(i)].value
+                kisiler.append([studentid,advisorid,name,surname,mail,phone,depart,faculty,clas,photopath,passw])
+            return kisiler
+        except Exception as e:
+            e = str(e)
+            return e
 
-# wb = load_workbook("documantation/advisor.xlsx")
-# ws = wb.active
+    def student_list_import(self,Rcount,base):
+        try:
+            with open("excel/student.xlsx", "wb") as fileOpen:
+                decode64 = base64.b64decode(base)
+                fileOpen.write(decode64)
+            listem = self.student_xlsx_add(int(Rcount))
+
+            if type(listem) == list:
+                for a in listem:
+                    self.student_insert(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10])
+
+                return "Successful"
+            else:
+                return "liste değil"
+        except Exception as e:
+            e = str(e)
+            return e
+
