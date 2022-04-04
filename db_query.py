@@ -446,7 +446,32 @@ class Query:
                         "password":data[8]}
                 dicte.update({count:data})
             return dicte
+        except Exception as e:
+            e = str(e)
+            return e
 
+    def studentListQuery(self):
+        try:
+            dicte = {}
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Student]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                count += 1
+                data = {"studentID":data[0],
+                        "advisorID":data[1],
+                        "name":data[2],
+                        "surname":data[3],
+                        "mail":data[4],
+                        "phoneNumber":data[5],
+                        "departmentID":data[6],
+                        "facultyID":data[7],
+                        "class":data[8],
+                        "photoPath":data[9],
+                        "password":data[10]}
+                dicte.update({count:data})
+            return dicte
         except Exception as e:
             e = str(e)
             return e
@@ -454,6 +479,7 @@ class Query:
 
 
 # nse = Query()
+# print(nse.studentListQuery())
 # print(nse.advisor_query())
 # print(nse.project_count_query("1119881"))
 # print(nse.semester_date_query())

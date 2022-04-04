@@ -356,5 +356,12 @@ def advisorListQuery():
 	result = que.advisor_query()
 	return result
 
+@app.route('/studentListQuery',methods=['POST'])
+def studentListQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	que = db_query.Query()
+	result = que.studentListQuery()
+	return result
+
 if __name__ == '__main__':
 	app.run()
