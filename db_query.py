@@ -476,9 +476,41 @@ class Query:
             e = str(e)
             return e
 
+    def projectListQuery(self):
+        try:
+            dicte = {}
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[t_Projects]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                count += 1
+                data = {"number":data[1],
+                        "version":data[2],
+                        "headline":data[3],
+                        "matter":data[4],
+                        "content":data[5],
+                        "purpose":data[6],#
+                        "keyword":data[7],
+                        "materiel":data[8],
+                        "method":data[9],
+                        "possibility":data[10],
+                        "status":data[11],
+                        "description":data[12],
+                        "maxPlagiarism":data[13],
+                        "semesterID":data[14],
+                        "studentID":data[15],
+                        "insertionDate":data[16],
+                        "updatedDate":data[17]}
+                dicte.update({count:data})
+            return dicte
+        except Exception as e:
+            e = str(e)
+            return e
 
 
 # nse = Query()
+# print(nse.projectListQuery())
 # print(nse.studentListQuery())
 # print(nse.advisor_query())
 # print(nse.project_count_query("1119881"))
