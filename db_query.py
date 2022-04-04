@@ -426,7 +426,35 @@ class Query:
             e = str(e)
             return e
 
+    def advisor_query(self):
+        try:
+            dicte = {}
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                count += 1
+                data = {"registrationID":data[0],
+                        "name":data[1],
+                        "surname":data[2],
+                        "title":data[3],
+                        "mail":data[4],
+                        "departmentID":data[5],
+                        "facultyID":data[6],
+                        "photoPath":data[7],
+                        "password":data[8]}
+                dicte.update({count:data})
+            return dicte
+
+        except Exception as e:
+            e = str(e)
+            return e
+
+
+
 # nse = Query()
+# print(nse.advisor_query())
 # print(nse.project_count_query("1119881"))
 # print(nse.semester_date_query())
 # print(nse.message_id_query(2))

@@ -349,5 +349,12 @@ def dissertationStatusUpdate():
 	result = update.dissertationStatusUpdate(projectNumber,old_status,new_status,description)
 	return result
 
+@app.route('/advisorListQuery',methods=['POST'])
+def advisorListQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	que = db_query.Query()
+	result = que.advisor_query()
+	return result
+
 if __name__ == '__main__':
 	app.run()
