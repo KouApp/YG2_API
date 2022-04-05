@@ -51,7 +51,7 @@ class Update:
         try:
             date = datetime.datetime.now()
             cursor = self.db.cursor()
-            cursor.execute("UPDATE t_reports SET status = ?,description = ?, updatedDate = ? WHERE projectNumber = ?",
+            cursor.execute("UPDATE t_reports SET status = ?,description = ?, updatedDate = ? WHERE id = ?",
                            int(new_status), desc,date,id)
             self.db.commit()
             return "Successful"
