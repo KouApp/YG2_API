@@ -316,13 +316,11 @@ def projectStatusUpdate():
 @app.route('/reportsStatusUpdate',methods=['POST'])
 def reportsStatusUpdate():
 	print('[INFO]--[test]--[FUNCTION]')
-	projectNumber = request.form['proje_number']
+	id = request.form['id']
 	new_status = request.form['new_status']
-	old_status = request.form['old_status']
 	description = request.form['description']
-	date = request.form['date']
 	update = db_update.Update()
-	result = update.reportsStatusUpdate(projectNumber,new_status,old_status,description,date)
+	result = update.reportsStatusUpdate(id,new_status,description)
 	return result
 
 @app.route('/dissertationStatusUpdate',methods=['POST'])

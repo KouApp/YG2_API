@@ -47,11 +47,12 @@ class Update:
             e = str(e)
             return e
 
-    def reportsStatusUpdate(self,proje_no,new_status,old_status,desc,date):
+    def reportsStatusUpdate(self,id,new_status,desc):
         try:
-
+            date = datetime.datetime.now()
             cursor = self.db.cursor()
-            cursor.execute("UPDATE t_reports SET status = ?,description = ?, updatedDate = ? WHERE projectNumber = ? AND status = ?", int(new_status), desc,date,proje_no,int(old_status))
+            cursor.execute("UPDATE t_reports SET status = ?,description = ?, updatedDate = ? WHERE projectNumber = ?",
+                           int(new_status), desc,date,id)
             self.db.commit()
             return "Successful"
         except Exception as e:
