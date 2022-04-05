@@ -78,12 +78,12 @@ class Update:
             e = str(e)
             return e
 
-    def dissertationStatusUpdate(self,proje_no,old_status,new_status,desc):
+    def dissertationStatusUpdate(self,id,new_status,desc):
         try:
             date = datetime.datetime.now()
             cursor = self.db.cursor()
-            cursor.execute("UPDATE t_Dissertation SET status = ?,description=?,updatedDate=? WHERE projectNumber = ? AND status = ? ",
-                           new_status,desc,date,proje_no,old_status)
+            cursor.execute("UPDATE t_Dissertation SET status = ?,description=?,updatedDate=? WHERE id = ?",
+                           new_status,desc,date,id)
             self.db.commit()
             return "Successful"
         except Exception as e:
