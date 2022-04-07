@@ -91,6 +91,17 @@ class Update:
             e = str(e)
             return e
 
+    def projectStatusUpRed(self,projeno):
+        try:
+            cursor = self.db.cursor()
+            cursor.execute("UPDATE t_Projects SET status = ?,description=? WHERE number = ?",
+                           5,"intihal tespit edildi",projeno)
+            self.db.commit()
+            return "Successful"
+        except Exception as e:
+            e = str(e)
+            return e
+
 # nesne = Update()
 # print(nesne.dissertationStatusUpdate("1119881",0,2,"yeni acıklama"))
 # print(nesne.projectNewPlagiarismUpdate("1119416",14))
