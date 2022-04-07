@@ -228,14 +228,14 @@ class Database_insert:
             wb = load_workbook("excel/advisor.xlsx")
             ws = wb.active
             for i in range(2,rowCount+1):
-                name = ws["B"+str(i)].value
-                surname = ws["C"+str(i)].value
-                title = ws["D"+str(i)].value
-                mail = ws["E"+str(i)].value
-                depart = ws["F"+str(i)].value
-                faculty = ws["G"+str(i)].value
-                photo = ws["H"+str(i)].value
-                passwd = ws["I"+str(i)].value
+                name = ws["A"+str(i)].value
+                surname = ws["B"+str(i)].value
+                title = ws["C"+str(i)].value
+                mail = ws["D"+str(i)].value
+                depart = ws["E"+str(i)].value
+                faculty = ws["F"+str(i)].value
+                photo = ws["G"+str(i)].value
+                passwd = ws["H"+str(i)].value
                 kisiler.append([name,surname,title,mail,depart,faculty,photo,passwd])
             return kisiler
         except Exception as e:
@@ -268,15 +268,15 @@ class Database_insert:
             ws = wb.active
             for i in range(2,rowCount+1):
                 studentid = ws["A"+str(i)].value
-                name = ws["C"+str(i)].value
-                surname = ws["D"+str(i)].value
-                mail = ws["E"+str(i)].value
-                phone = ws["F"+str(i)].value
-                depart = ws["G"+str(i)].value
-                faculty = ws["H"+str(i)].value
-                clas = ws["I"+str(i)].value
-                photopath = ws["J"+str(i)].value
-                passw = ws["K"+str(i)].value
+                name = ws["B"+str(i)].value
+                surname = ws["C"+str(i)].value
+                mail = ws["D"+str(i)].value
+                phone = ws["E"+str(i)].value
+                depart = ws["F"+str(i)].value
+                faculty = ws["G"+str(i)].value
+                clas = ws["H"+str(i)].value
+                photopath = ws["I"+str(i)].value
+                passw = ws["J"+str(i)].value
                 kisiler.append([studentid,rnadv,name,surname,mail,phone,depart,faculty,clas,photopath,passw])
             return kisiler
         except Exception as e:
