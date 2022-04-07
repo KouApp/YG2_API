@@ -379,6 +379,13 @@ def studentimport():
 	result = ins.student_list_import(row,base)
 	return result
 
+@app.route('/advisorStudentQuery',methods=['POST'])
+def advisorStudentQuery():
+	print('[INFO]--[test]--[FUNCTION]')
+	studentno = request.form['studentNo']
+	query = db_query.Query()
+	result = query.advisorStudentQuery(studentno)
+	return result
 
 
 if __name__ == '__main__':

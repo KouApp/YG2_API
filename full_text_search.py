@@ -86,7 +86,6 @@ class Search:
                         dicte.update({data2[1]:intihal})
         self.intihal.update({"keyword":dicte})
 
-
     def text_to_text(self,text1,text2):
         benzer_kelime_sayisi = 0
         if type(text1) != list and type(text2) != list:

@@ -111,10 +111,10 @@ class Tester:
         curs = self.db.cursor()
         curs.execute('DELETE FROM [abdullah_pys].[m_Advisor]')
 
-# testing = Tester()
+testing = Tester()
 # testing.faculty_list()
 # testing.department_list()
-# testing.student_list()
+testing.student_list()
 # testing.advisor_list()
 # testing.advisorDelete()
 # testing.message_list()

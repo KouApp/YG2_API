@@ -544,8 +544,33 @@ class Query:
             e = str(e)
             return e
 
+    def advisorStudentQuery(self,orgno):
+        try:
+
+            curs = self.db.cursor()
+            curs.execute("SELECT std.[studentID] ,[advisorID],adv.name as advname, adv.surname as advsurname,std.[name],std.[surname],std.[mail],std.[phoneNumber],std.[departmentID],std.[facultyID],std.[class],std.[photoPath],std.[password]FROM [abdullah_pys].[m_Student] std, [abdullah_pys].[m_Advisor] adv WHERE [studentID] = ? and std.advisorID = adv.registrationID",orgno)
+            dataTable = curs.fetchall()
+
+            for data in dataTable:
+                data = {"studentID":data[0],
+                        "advisorID":data[1],
+                        "advisorName":data[2],
+                        "advisorSurname":data[3],
+                        "studentName":data[4],
+                        "studentSurname":data[5],
+                        "mail":data[6],
+                        "tel":data[7],
+                        "departman":data[8],
+                        "facultyID":data[9],
+                        "password":data[10]}
+
+                return data
+        except Exception as e:
+            e = str(e)
+            return e
 
 # nse = Query()
+# print(nse.advisorStudentQuery("181307003"))
 # print(nse.advisorCountQuery())
 # print(nse.semesterListQuery())
 # print(nse.projectListQuery())
