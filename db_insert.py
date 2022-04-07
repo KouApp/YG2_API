@@ -5,6 +5,7 @@ import full_text_search as fullSearch
 import random
 from openpyxl import Workbook,load_workbook
 import base64
+import db_query as Query
 
 class Database_insert:
 
@@ -258,11 +259,13 @@ class Database_insert:
     def student_xlsx_add(self,rowCount):
         kisiler = []
         try:
+            nesne = Query.Query()
+            advisor_count = nesne.advisorCountQuery()
+            rnd_advisor = random.randint(0,advisor_count)
             wb = load_workbook("excel/student.xlsx")
             ws = wb.active
             for i in range(2,rowCount+1):
                 studentid = ws["A"+str(i)].value
-                advisorid = ws["B"+str(i)].value
                 name = ws["C"+str(i)].value
                 surname = ws["D"+str(i)].value
                 mail = ws["E"+str(i)].value
@@ -272,7 +275,7 @@ class Database_insert:
                 clas = ws["I"+str(i)].value
                 photopath = ws["J"+str(i)].value
                 passw = ws["K"+str(i)].value
-                kisiler.append([studentid,advisorid,name,surname,mail,phone,depart,faculty,clas,photopath,passw])
+                kisiler.append([studentid,rnd_advisor,name,surname,mail,phone,depart,faculty,clas,photopath,passw])
             return kisiler
         except Exception as e:
             e = str(e)

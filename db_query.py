@@ -530,9 +530,23 @@ class Query:
             e = str(e)
             return e
 
+    def advisorCountQuery(self):
+        try:
+
+            curs = self.db.cursor()
+            curs.execute('SELECT * FROM [abdullah_pys].[m_Advisor]')
+            dataTable = curs.fetchall()
+            count = 0
+            for data in dataTable:
+                count += 1
+            return count
+        except Exception as e:
+            e = str(e)
+            return e
 
 
 # nse = Query()
+# print(nse.advisorCountQuery())
 # print(nse.semesterListQuery())
 # print(nse.projectListQuery())
 # print(nse.studentListQuery())
