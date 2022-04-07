@@ -2,6 +2,7 @@
 git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git  
 git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git  
 ssh root@172.105.73.62
+NGİNX permisson : chmod -R 777 public/  
 ## Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable) [duplicate]
 
 'Synaptic Package Manager' or 'Software Updater' is open.  
