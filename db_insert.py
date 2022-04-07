@@ -261,7 +261,9 @@ class Database_insert:
         try:
             nesne = Query.Query()
             advisor_count = nesne.advisorCountQuery()
+            advisoor_list = nesne.advisor_query()
             rnd_advisor = random.randint(0,advisor_count)
+            rnadv = advisoor_list[rnd_advisor]["registrationID"]
             wb = load_workbook("excel/student.xlsx")
             ws = wb.active
             for i in range(2,rowCount+1):
@@ -275,7 +277,7 @@ class Database_insert:
                 clas = ws["I"+str(i)].value
                 photopath = ws["J"+str(i)].value
                 passw = ws["K"+str(i)].value
-                kisiler.append([studentid,rnd_advisor,name,surname,mail,phone,depart,faculty,clas,photopath,passw])
+                kisiler.append([studentid,rnadv,name,surname,mail,phone,depart,faculty,clas,photopath,passw])
             return kisiler
         except Exception as e:
             e = str(e)
