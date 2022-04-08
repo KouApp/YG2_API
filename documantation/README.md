@@ -1,5 +1,5 @@
 # key
-git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git  
+git clone https://yasinsahin0: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@github.com/KouApp/yaz1WebSites.git  
 git clone https://yasinsahin0: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@github.com/KouApp/yaz1Api.git  
 ssh root@172.105.73.62  
 NGİNX permisson : chmod -R 777 public/  
